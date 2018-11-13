@@ -11,4 +11,5 @@
 //    success: function(response) 
 //    { console.log(response.location_suggestions) } });
 
+// Google Geolocation / geocoding API Key: AIzaSyDfe8FcVBVkJX2yP6vNEyjLGyxsJ_oJMGI
 
