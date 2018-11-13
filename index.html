@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <!--Import Google Icon Font-->
+     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!--Import materialize.css-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="assets\css\style.css">
+    
+    <title>Where's Happenin'!</title>
+  </head>
+  
+  <body>
+    <!-- navagation bar -->
+    <div class="container">
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#!">one</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">two</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">three</a></li>
+          </ul>
+          <nav>
+            <div class="nav-wrapper pink darken-1">
+              <a href="" class="brand-logo center">Where's Happenin'</a>
+              <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="" class="dropdown-button" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </nav>
+
+  <!-- data list -->
+  <div class="row">
+      <ul class="collapsible" data-collapsible="accordion">
+        <div class="container col s12 m3 l5">
+          <li>
+            <div class="collapsible-header"><i class="material-icons">local_dining</i>Resturant</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet</span></div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">local_play</i>Theatre</div>
+            <div class="collapsible-body"><span>Lorem ipsum, dolor sit amet consectetur adipisicing.</span></div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">music_video</i>Concert</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+          </li>
+        </ul>
+      </div>
+    
+
+    </div>
+
+
+
+
+
+    <!-- JavaScript / jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <!-- materialize script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- script for dropdown buttons -->
+    <script>$(".button-collapse").sideNav();</script>
+    <script>$(document).ready(function(){
+        $('.collapsible').collapsible();
+      });</script>
+    <script type="text/javascript" src="assets/javascript/main.js"></script>
+    <!-- <script type="text/javascript" src="assets/javascript/api.js"></script> -->
+    <!-- local firebase javascript file -->
+    <script type="text/javascript" src="assets/javascript/firebase.js"></script>
+
+  </body>
+</html>
