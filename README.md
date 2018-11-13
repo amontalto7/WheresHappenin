@@ -1,2 +1,2 @@
-# Project1
+# Where's Happenin'
 Group Project #1
