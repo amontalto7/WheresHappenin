@@ -134,7 +134,7 @@ var zipUrl = buildQueryURL("11418");
 var queryURL = myUrl;
 
 $(document).ready(function() {
-  $("#go").on("click", function() {
+  $("#search").on("click", function() {
     event.preventDefault();
     var myAddress = $("#addressBox")
       .val()
