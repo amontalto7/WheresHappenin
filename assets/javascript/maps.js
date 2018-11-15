@@ -116,16 +116,15 @@ function convertAddress(obj, i) {
 }
 
 function updateMap(geoData) {
-//   console.log(geoData);
+  //   console.log(geoData);
   var coords = convertAddress(geoData);
 
-  mymap.setView(coords, 15);
+  mymap.setView(coords, 14);
 
   // clear previous markers
   markerGroup.clearLayers();
   // add new marker
   var marker = L.marker(coords).addTo(markerGroup);
-
 }
 
 var myUrl = buildQueryURL(g_address);
@@ -134,20 +133,28 @@ var zipUrl = buildQueryURL("11418");
 var queryURL = myUrl;
 
 $(document).ready(function() {
-  $("#search").on("click", function() {
-    event.preventDefault();
-    var myAddress = $("#addressBox")
-      .val()
-      .trim();
+  // $("#search").on("click", function() {
+    $("#search").on("keypress", function(e) {
+    // alert(e.which);
+    var key = e.which;
+    if (key === 13) {
+      event.preventDefault();
+      // if enter key
+      // var myAddress = $("#addressBox")
+      var myAddress = $("#search")
+        .val()
+        .trim();
 
-    queryURL = buildQueryURL(myAddress);
+      queryURL = buildQueryURL(myAddress);
+      console.log('queryUrl: ' + queryURL);
 
-    $.ajax({
-      url: queryURL,
-      headers: {
-        Accept: "image/*"
-      },
-      method: "GET"
-    }).then(updateMap);
+      $.ajax({
+        url: queryURL,
+        headers: {
+          Accept: "image/*"
+        },
+        method: "GET"
+      }).then(updateMap);
+    }
   });
 });
