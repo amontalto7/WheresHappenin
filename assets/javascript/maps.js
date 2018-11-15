@@ -127,10 +127,10 @@ function updateMap(geoData) {
   var marker = L.marker(coords).addTo(markerGroup);
 }
 
-var myUrl = buildQueryURL(g_address);
-var zipUrl = buildQueryURL("11418");
+// var myUrl = buildQueryURL(g_address);
+// var zipUrl = buildQueryURL("11418");
 
-var queryURL = myUrl;
+// var queryURL = myUrl;
 
 $(document).ready(function() {
   // $("#search").on("click", function() {
@@ -145,7 +145,7 @@ $(document).ready(function() {
         .val()
         .trim();
 
-      queryURL = buildQueryURL(myAddress);
+     var queryURL = buildQueryURL(myAddress);
       console.log('queryUrl: ' + queryURL);
 
       $.ajax({
