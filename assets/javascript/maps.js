@@ -24,38 +24,15 @@ L.tileLayer(
 // ADD LOCATION MARKER
 // First, create a layer group for all markers, called markerGroup
 var markerGroup = L.layerGroup().addTo(mymap);
+var restaurantGroup = L.layerGroup().addTo(mymap);
 // Then, add a new marker to the group, which gets added to the map
-var marker = L.marker([51.5, -0.09]).addTo(markerGroup);
+// var marker = L.marker([51.5, -0.09]).addTo(markerGroup);
 // console.log("Marker Group:");
 // console.log(markerGroup);
 // If you want to remove all markers, clear the layer
 //   markerGroup.clearLayers();
 
 //-------------------------------------------------------------
-// ADD CIRCLE  - Maybe we can use this to highlight the selected radius
-var circle = L.circle([51.508, -0.11], {
-  color: "red",
-  fillColor: "#f03",
-  fillOpacity: 0.5,
-  radius: 500
-}).addTo(mymap);
-
-// ADD POLYGON
-var polygon = L.polygon(
-  [[51.509, -0.08], [51.503, -0.06], [51.51, -0.047]]
-  // {color: 'green'}   // Color is blue by default
-).addTo(mymap);
-
-// POPUPS  (text information when clicking on elements)
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-circle.bindPopup("I am a circle.");
-polygon.bindPopup("I am a polygon.");
-
-// General stand-alone popup when map loads
-var popup = L.popup()
-  .setLatLng([51.5, -0.09])
-  .setContent("I am a standalone popup.")
-  .openOn(mymap);
 
 // MAP EVENTS (test by clicking on the map)
 var locationPopup = L.popup();
@@ -76,27 +53,6 @@ const gKey = "AIzaSyDfe8FcVBVkJX2yP6vNEyjLGyxsJ_oJMGI";
 // or
 var g_address = "500+W+120th+St,+New+York,+NY";
 
-// var localUrl =
-
-function buildQueryURL(address) {
-  // base queryURL
-  var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?";
-  var API_KEY = "AIzaSyDfe8FcVBVkJX2yP6vNEyjLGyxsJ_oJMGI";
-  // Begin building an object to contain our API call's query parameters
-  // Set the API key
-  var queryParams = { key: API_KEY };
-
-  // Grab the datavalue from the button clicked
-  queryParams.address = address;
-
-  // get the limit
-  //   queryParams.limit = limit;
-
-  // Logging the URL so we have access to it for troubleshooting
-  console.log("---------------\nURL: " + queryURL + "\n---------------");
-  console.log(queryURL + $.param(queryParams));
-  return queryURL + $.param(queryParams);
-}
 
 function convertAddress(obj, i) {
   // Pass in google GeoCode object, and index if necessary
@@ -106,55 +62,46 @@ function convertAddress(obj, i) {
     i = 0;
   }
 
-  var coords = [
+  // var coords = [
+  // set global array to the obtained coordinates so they can be used by other APIs
+  globalPlace.coords = [
     obj.results[i].geometry.location.lat, // latitude
     obj.results[i].geometry.location.lng // longitude
   ];
+
+  globalPlace.name = obj.results[i].formatted_address;
+
   //   console.log("latitude: "+ coords[0]);
   //   console.log("longitude: "+ coords[1]);
-  return coords;
+  return globalPlace.coords;
+}
+
+function addMarker(place,layer) {
+  var coords = place.coords;
+  name = place.name;
+
+  var marker = L.marker(coords).addTo(layer);
+  marker.bindPopup("<b>" + name + "</b>");
 }
 
 function updateMap(geoData) {
-  //   console.log(geoData);
-  var coords = convertAddress(geoData);
+    console.log(geoData);
+  var coordinates = convertAddress(geoData);
 
-  mymap.setView(coords, 14);
+  mymap.setView(coordinates, 14);
 
   // clear previous markers
   markerGroup.clearLayers();
+  restaurantGroup.clearLayers();
   // add new marker
-  var marker = L.marker(coords).addTo(markerGroup);
+  addMarker(globalPlace,markerGroup);
+  displayRestaurants(coordinates);
+
+  // alert (coordinates[0]+" : "+ coordinates[1]);
 }
 
-var myUrl = buildQueryURL(g_address);
-var zipUrl = buildQueryURL("11418");
+// var myUrl = buildQueryURL(g_address);
+// var zipUrl = buildQueryURL("11418");
 
-var queryURL = myUrl;
+// var queryURL = myUrl;
 
-$(document).ready(function() {
-  // $("#search").on("click", function() {
-    $("#search").on("keypress", function(e) {
-    // alert(e.which);
-    var key = e.which;
-    if (key === 13) {
-      event.preventDefault();
-      // if enter key
-      // var myAddress = $("#addressBox")
-      var myAddress = $("#search")
-        .val()
-        .trim();
-
-      queryURL = buildQueryURL(myAddress);
-      console.log('queryUrl: ' + queryURL);
-
-      $.ajax({
-        url: queryURL,
-        headers: {
-          Accept: "image/*"
-        },
-        method: "GET"
-      }).then(updateMap);
-    }
-  });
-});
