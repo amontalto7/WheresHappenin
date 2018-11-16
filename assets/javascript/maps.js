@@ -64,24 +64,29 @@ function convertAddress(obj, i) {
 
   // var coords = [
   // set global array to the obtained coordinates so they can be used by other APIs
-  coordinates = [
+  globalPlace.coords = [
     obj.results[i].geometry.location.lat, // latitude
     obj.results[i].geometry.location.lng // longitude
   ];
 
+  globalPlace.name = obj.results[i].formatted_address;
+
   //   console.log("latitude: "+ coords[0]);
   //   console.log("longitude: "+ coords[1]);
-  return coordinates;
+  return globalPlace.coords;
 }
 
-function addMarker(coords,layer) {
+function addMarker(place,layer) {
+  var coords = place.coords;
+  name = place.name;
+
   var marker = L.marker(coords).addTo(layer);
-  
+  marker.bindPopup("<b>" + name + "</b>");
 }
 
 function updateMap(geoData) {
-  //   console.log(geoData);
-  coordinates = convertAddress(geoData);
+    console.log(geoData);
+  var coordinates = convertAddress(geoData);
 
   mymap.setView(coordinates, 14);
 
@@ -89,8 +94,8 @@ function updateMap(geoData) {
   markerGroup.clearLayers();
   restaurantGroup.clearLayers();
   // add new marker
-  addMarker(coordinates,markerGroup);
-  displayRestaurants();
+  addMarker(globalPlace,markerGroup);
+  displayRestaurants(coordinates);
 
   // alert (coordinates[0]+" : "+ coordinates[1]);
 }

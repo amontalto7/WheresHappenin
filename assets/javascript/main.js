@@ -1,8 +1,10 @@
 // Zomato - restaurants
 // API key - 495fd465b1df3b6ee70c8cd31b998836
 
-// AJAX specific for Zomato:
-var coordinates = [];
+var globalPlace = {
+  coords : [],
+  name : ""
+}
 
 function buildQueryURL(address) {
   // base queryURL
@@ -45,9 +47,9 @@ function buildZomatoURL(coords) {
 }
 
 
-function displayRestaurants() {
-  var queryURL = buildZomatoURL(coordinates)
-
+function displayRestaurants(coords) {
+  var queryURL = buildZomatoURL(coords)
+  console.log("zomato URL: "+ queryURL);
   $.ajax({
     //  url: "https://developers.zomato.com/api/v2.1/search?count=10&lat=40.7648&lon=-73.9808&radius=1000",
          url: queryURL,
@@ -82,8 +84,15 @@ function displayRestaurants() {
            // Add latitude / longitude info from each restaurant into an array of coordinates
            var lat = results[i].restaurant.location.latitude;
            var lng = results[i].restaurant.location.longitude;
+           var name = results[i].restaurant.name;
             var rCoords = [lat,lng];
-            locations.push(rCoords);
+
+            var restaurantInfo = {
+              coords : rCoords,
+              name : name
+            }
+
+            locations.push(restaurantInfo);
 
           //  addMarker(coordinates,restaurantGroup);
  
