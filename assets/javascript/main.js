@@ -3,7 +3,8 @@
 
 var globalPlace = {
   coords : [],
-  name : ""
+  name : "",
+  address: ""
 }
 
 function buildQueryURL(address) {
@@ -91,11 +92,14 @@ function displayRestaurants(coords) {
            var lat = results[i].restaurant.location.latitude;
            var lng = results[i].restaurant.location.longitude;
            var name = results[i].restaurant.name;
-            var rCoords = [lat,lng];
+           var address = results[i].restaurant.location.address;
+
+           var rCoords = [lat,lng];
 
             var restaurantInfo = {
               coords : rCoords,
-              name : name
+              name : name,
+              address : address
             }
 
             locations.push(restaurantInfo);
@@ -104,7 +108,7 @@ function displayRestaurants(coords) {
  
          }
          locations.forEach(function(element) {
-          addMarker(element,restaurantGroup);
+          addRMarker(element,restaurantGroup);
          });
      });
    }
