@@ -27,15 +27,21 @@ function buildQueryURL(address) {
 }
 
 function buildZomatoURL(coords) {
+  // https://developers.zomato.com/api/v2.1/search?entity_type=zone&count=5&lat=40.6966538&lon=-73.83308439999999
+  // &radius=500&sort=real_distance&order=asc
+
   // base queryURL
   var queryURL = "https://developers.zomato.com/api/v2.1/search?";
   // Begin building an object to contain our API call's query parameters
   var queryParams = { count: 5 };
 
   // Grab the datavalue from the button clicked
+  queryParams.entity_type = "zone";
   queryParams.lat = coords[0];
   queryParams.lon = coords[1];
   queryParams.radius = 500;
+  queryParams.sort="real_distance";
+  queryParams.order="asc;"
 
   // get the limit
   //   queryParams.limit = limit;
