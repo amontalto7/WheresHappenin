@@ -24,9 +24,9 @@
 
 
 /* ----------------------------------------------------------- */
-/* Styles for Zomato API */
+/* Styles for Zomato API & Evenbrite API */
 /* ----------------------------------------------------------- */
-.restaurantCard {
+.restaurantCard, .eventsCard {
     font-family: Georgia, 'Times New Roman', Times, serif;
     border: 1px solid;
     border-color: black;
@@ -34,14 +34,14 @@
     margin-bottom: 10px;
 }
 
-#restName {
+#restName, #eventName {
     font-size: 1.5em;
 }
 
-.restAddress, .restCuisine, .restCost {
+.restAddress, .restCuisine, .restCost, .eventStart {
     font-size: .8em;
 }
 
 /* ----------------------------------------------------------- */
-/* Endfor Zomato API */
+/* Endfor Zomato API & Eventbrite API*/
 /* ----------------------------------------------------------- */
