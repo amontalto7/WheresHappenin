@@ -15,9 +15,9 @@
          console.log(results);
   
     for (var i = 0; i < results.length; i++) {
-      console.log(results[i].name.text)
-      console.log(results[i].url)
-      console.log(results[i].start.local)
+    //  console.log(results[i].name.text)
+    //  console.log(results[i].url)
+    //  console.log(results[i].start.local)
 
       var startTime = moment(results[i].start.local).format('MMMM Do YYYY, h:mm')
 
