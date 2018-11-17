@@ -4,7 +4,9 @@
 .navbar-fixed { z-index: 9999; }
 #sidenav-overlay { z-index: 1; }
 
-
+#logo-container {
+    font-family: 'Acme', sans-serif;
+}
 
 
 

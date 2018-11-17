@@ -32,6 +32,23 @@ var restaurantGroup = L.layerGroup().addTo(mymap);
 // If you want to remove all markers, clear the layer
 //   markerGroup.clearLayers();
 
+// Create restaurant marker
+var rIcon = L.icon({
+  iconUrl: "icons8-marker-40red.png",
+  // shadowUrl: '',
+
+  iconSize: [40, 42] // size of the icon
+  // shadowSize:   [30,30],  // size of the shadow
+  // iconAnchor:   [0,0],  // point of the icon which will correspond to marker's location
+  // shadowAnchor: [4, 62],  // the same for the shadow
+  // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+// Create event marker
+var eIcon = L.icon({
+  iconUrl: "icons8-marker-40blue.png",
+  iconSize: [40, 42] // size of the icon
+});
 //-------------------------------------------------------------
 
 // MAP EVENTS (test by clicking on the map)
@@ -52,7 +69,6 @@ const geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?";
 const gKey = "AIzaSyDfe8FcVBVkJX2yP6vNEyjLGyxsJ_oJMGI";
 // or
 var g_address = "500+W+120th+St,+New+York,+NY";
-
 
 function convertAddress(obj, i) {
   // Pass in google GeoCode object, and index if necessary
@@ -76,26 +92,46 @@ function convertAddress(obj, i) {
   return globalPlace.coords;
 }
 
-function addMarker(place,layer) {
+function addMarker(place, layer) {
   var coords = place.coords;
-  name = place.name;
+  var name = place.name;
+  var address = place.address;
 
   var marker = L.marker(coords).addTo(layer);
-  marker.bindPopup("<b>" + name + "</b>");
+  marker.bindPopup("<b>" + name + "</b><br>" + address);
 }
 
+function addRMarker(place, layer) {
+  var coords = place.coords;
+  var name = place.name;
+  var address = place.address;
+  var marker = L.marker(coords, { icon: rIcon }).addTo(layer);
+  marker.bindPopup("<b>" + name + "</b><br>" + address);
+}
+
+function addEMarker(place, layer) {
+  var coords = place.coords;
+  var name = place.name;
+  var address = place.address;
+  var marker = L.marker(coords, { icon: eIcon }).addTo(layer);
+  marker.bindPopup("<b>" + name + "</b><br>" + address);
+}
+
+
+
 function updateMap(geoData) {
-    console.log(geoData);
+  console.log(geoData);
   var coordinates = convertAddress(geoData);
 
-  mymap.setView(coordinates, 14);
+  mymap.setView(coordinates, 16);
 
   // clear previous markers
   markerGroup.clearLayers();
   restaurantGroup.clearLayers();
   // add new marker
-  addMarker(globalPlace,markerGroup);
+  addMarker(globalPlace, markerGroup);
   displayRestaurants(coordinates);
+  displayEvent();  //TODO - add coordinates and limit results
 
   // alert (coordinates[0]+" : "+ coordinates[1]);
 }
@@ -104,4 +140,3 @@ function updateMap(geoData) {
 // var zipUrl = buildQueryURL("11418");
 
 // var queryURL = myUrl;
-
