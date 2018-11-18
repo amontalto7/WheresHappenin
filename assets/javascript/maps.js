@@ -131,7 +131,7 @@ function updateMap(geoData) {
   // add new marker
   addMarker(globalPlace, markerGroup);
   displayRestaurants(coordinates);
-  displayEvent();  //TODO - add coordinates and limit results
+  displayEvent(coordinates); 
 
   // alert (coordinates[0]+" : "+ coordinates[1]);
 }
