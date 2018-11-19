@@ -34,14 +34,17 @@ function buildZomatoURL(coords) {
   // base queryURL
   var queryURL = "https://developers.zomato.com/api/v2.1/search?";
   // Begin building an object to contain our API call's query parameters
-  var queryParams = { count: 5 };
+  var queryParams = { count: 100 };
 
   // Grab the datavalue from the button clicked
+  queryParams.entity_id = 280;
   queryParams.entity_type = "zone";
   queryParams.lat = coords[0];
   queryParams.lon = coords[1];
-  queryParams.radius = 500;
-  queryParams.sort="real_distance";
+  queryParams.radius = 1000;
+  // queryParams.sort="real_distance";
+  queryParams.collection_id = 1;
+  queryParams.sort="rating";
   queryParams.order="asc;"
 
   // get the limit
@@ -72,7 +75,7 @@ function displayRestaurants(coords) {
          console.log(results);
          $("#zomato").empty();
          var locations = [];
-         for (var i = 0; i < results.length; i++) {
+         for (var i = 0; i < 6 ; i++) {
            console.log(results[i].restaurant.name)
           //  console.log(results[i].restaurant.location.address)
           //  console.log(results[i].restaurant.menu_url)
