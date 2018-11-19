@@ -22,33 +22,22 @@ L.tileLayer(
 ).addTo(mymap);
 
 // ADD LOCATION MARKER
-// First, create a layer group for all markers, called markerGroup
+// create a layer group for all markers, called markerGroup. Then create a layer for restaurant/event markers
 var markerGroup = L.layerGroup().addTo(mymap);
 var restaurantGroup = L.layerGroup().addTo(mymap);
-// Then, add a new marker to the group, which gets added to the map
-// var marker = L.marker([51.5, -0.09]).addTo(markerGroup);
-// console.log("Marker Group:");
-// console.log(markerGroup);
-// If you want to remove all markers, clear the layer
-//   markerGroup.clearLayers();
 
-// Create restaurant marker
-var rIcon = L.icon({
-  iconUrl: "icons8-marker-40red.png",
-  // shadowUrl: '',
-
-  iconSize: [40, 42] // size of the icon
-  // shadowSize:   [30,30],  // size of the shadow
-  // iconAnchor:   [0,0],  // point of the icon which will correspond to marker's location
-  // shadowAnchor: [4, 62],  // the same for the shadow
-  // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+// create icons for restaurants (rIcon) and events (eIcon), which inherit properties from L.Icon
+var customIcon = L.Icon.extend({
+  options: {
+    iconSize: [40, 42], // size of the icon
+    shadowUrl: "https://unpkg.com/leaflet@1.3.4/dist/images/marker-shadow.png",
+    shadowAnchor: [12, 22] // where to anchor shadow image
+  }
 });
 
-// Create event marker
-var eIcon = L.icon({
-  iconUrl: "icons8-marker-40blue.png",
-  iconSize: [40, 42] // size of the icon
-});
+var rIcon = new customIcon({ iconUrl: "icons8-marker-40red.png" });
+var eIcon = new customIcon({ iconUrl: "icons8-marker-40blue.png" });
+
 //-------------------------------------------------------------
 
 // MAP EVENTS (test by clicking on the map)
@@ -117,13 +106,11 @@ function addEMarker(place, layer) {
   marker.bindPopup("<b>" + name + "</b><br>" + address);
 }
 
-
-
 function updateMap(geoData) {
   console.log(geoData);
   var coordinates = convertAddress(geoData);
 
-  mymap.setView(coordinates, 16);
+  mymap.setView(coordinates, 15);
 
   // clear previous markers
   markerGroup.clearLayers();
@@ -131,12 +118,5 @@ function updateMap(geoData) {
   // add new marker
   addMarker(globalPlace, markerGroup);
   displayRestaurants(coordinates);
-  displayEvent(coordinates); 
-
-  // alert (coordinates[0]+" : "+ coordinates[1]);
+  displayEvent(coordinates);
 }
-
-// var myUrl = buildQueryURL(g_address);
-// var zipUrl = buildQueryURL("11418");
-
-// var queryURL = myUrl;

@@ -26,7 +26,7 @@ function buildEventSearchURL(coords) {
   // };
 
   var queryParams =
-    "location.within=1km&location.latitude=" +
+    "location.within=3km&location.latitude=" +
     coords[0] +
     "&location.longitude=" +
     coords[1] +
@@ -58,6 +58,8 @@ function displayEvent(coords) {
 
     $("#eventbrite").empty();
     var locations = [];
+    var venueIDs = [];
+    var eventNames = [];
     var displayFive = results.slice(0, 5);
     for (var i = 0; i < displayFive.length; i++) {
       //  console.log(results[i].name.text)
@@ -72,6 +74,12 @@ function displayEvent(coords) {
       eventCard.addClass("eventsCard");
 
       var name = results[i].name.text;
+      var vID = results[i].venue_id;
+      var venueInfo = {
+        venueID : vID,
+        eventName : name
+      };
+      venueIDs.push(venueInfo);
       eventCard.append(
         "<a id='eventName' href=" + results[i].url + ">" + name + "</a>"
       );
@@ -79,11 +87,20 @@ function displayEvent(coords) {
 
       $("#eventbrite").append(eventCard);
 
-      var venue = results[i].venue_id;
-
+    }
+// console.log("VenueInfo");
+// console.log(venueIDs);
+    // 2nd ajax call to get venue information
+    venueIDs.forEach(function(element) {
+      // console.log("Element");
+      // console.log(element);
+    // for (var i = 0; i < venueIDs.length; i++) {
       $.ajax({
         // url: "https://www.eventbriteapi.com/v3/events/search/?location.within=1km&location.latitude=40.7648&location.longitude=-73.9808&start_date.range_start=2018-11-20T00%3A00%3A00&token=TIAV75OSYBH2MPVU3O2B",
-        url: "https://www.eventbriteapi.com/v3/venues/" + venue + "/?token=TIAV75OSYBH2MPVU3O2B",
+        url:
+          "https://www.eventbriteapi.com/v3/venues/" +
+          element.venueID +
+          "/?token=TIAV75OSYBH2MPVU3O2B",
         method: "GET",
         dataType: "json"
       }).then(function(response) {
@@ -91,28 +108,25 @@ function displayEvent(coords) {
 
         var latitude = response.latitude;
         var longitude = response.longitude;
-        console.log(latitude);
-        console.log(longitude);
+        var address = response.address.localized_address_display;
+        var venuename = response.name;
+
+        // console.log(latitude);
+        // console.log(longitude);
+
+        var eCoords = [latitude, longitude];
+        var eventInfo = {
+          coords: eCoords,
+          name: element.eventName + " @ " + venuename,
+          address: address
+        };
+        // locations.push(eventInfo);
+        // add markers to map
+
+        addEMarker(eventInfo, restaurantGroup);
       });
-    
-
-
-      // Add latitude / longitude info from each event into an array of coordinates
-      // var lat = "0"; // need ajax call for venue id
-      // var lng = "0"; // need ajax call for venue id
-
-      // var eCoords = [lat, lng];
-
-      // var eventInfo = {
-        // coords: eCoords,
-        // name: name,
-        // address: address
-      // };
-
-      //  locations.push(restaurantInfo);
-    }
+    });
   });
 }
 
 // displayEvent();
-
