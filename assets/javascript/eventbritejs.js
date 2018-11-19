@@ -81,6 +81,22 @@ function displayEvent(coords) {
 
       var venue = results[i].venue_id;
 
+      $.ajax({
+        // url: "https://www.eventbriteapi.com/v3/events/search/?location.within=1km&location.latitude=40.7648&location.longitude=-73.9808&start_date.range_start=2018-11-20T00%3A00%3A00&token=TIAV75OSYBH2MPVU3O2B",
+        url: "https://www.eventbriteapi.com/v3/venues/" + venue + "/?token=TIAV75OSYBH2MPVU3O2B",
+        method: "GET",
+        dataType: "json"
+      }).then(function(response) {
+        console.log(response);
+
+        var latitude = response.latitude;
+        var longitude = response.longitude;
+        console.log(latitude);
+        console.log(longitude);
+      });
+    
+
+
       // Add latitude / longitude info from each event into an array of coordinates
       // var lat = "0"; // need ajax call for venue id
       // var lng = "0"; // need ajax call for venue id
@@ -99,3 +115,4 @@ function displayEvent(coords) {
 }
 
 // displayEvent();
+
