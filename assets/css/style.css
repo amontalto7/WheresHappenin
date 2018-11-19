@@ -37,11 +37,11 @@
 }
 
 #restName, #eventName {
-    font-size: 1.5em;
+    font-size: 1.1rem;
 }
 
 .restAddress, .restCuisine, .restCost, .eventStart {
-    font-size: .8em;
+    font-size: .8rem;
 }
 
 /* ----------------------------------------------------------- */

@@ -110,7 +110,7 @@ function updateMap(geoData) {
   console.log(geoData);
   var coordinates = convertAddress(geoData);
 
-  mymap.setView(coordinates, 15);
+  mymap.setView(coordinates, 14);
 
   // clear previous markers
   markerGroup.clearLayers();
