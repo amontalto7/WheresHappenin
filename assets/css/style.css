@@ -44,6 +44,17 @@
     font-size: .8rem;
 }
 
+.fav {
+    color: red;
+    margin-left: 20px;
+}
+
+.fav:hover {
+    cursor: cell;
+}
+
+
+
 /* ----------------------------------------------------------- */
 /* Endfor Zomato API & Eventbrite API*/
 /* ----------------------------------------------------------- */

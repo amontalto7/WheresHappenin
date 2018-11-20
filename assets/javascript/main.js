@@ -2,10 +2,10 @@
 // API key - 495fd465b1df3b6ee70c8cd31b998836
 
 var globalPlace = {
-  coords : [],
-  name : "",
+  coords: [],
+  name: "",
   address: ""
-}
+};
 
 function buildQueryURL(address) {
   // base queryURL
@@ -44,8 +44,8 @@ function buildZomatoURL(coords) {
   queryParams.radius = 1000;
   // queryParams.sort="real_distance";
   queryParams.collection_id = 1;
-  queryParams.sort="rating";
-  queryParams.order="asc;"
+  queryParams.sort = "rating";
+  queryParams.order = "asc;";
 
   // get the limit
   //   queryParams.limit = limit;
@@ -56,96 +56,130 @@ function buildZomatoURL(coords) {
   return queryURL + $.param(queryParams);
 }
 
-
 function displayRestaurants(coords) {
-  var queryURL = buildZomatoURL(coords)
-  console.log("zomato URL: "+ queryURL);
+  var queryURL = buildZomatoURL(coords);
+  console.log("zomato URL: " + queryURL);
   $.ajax({
     //  url: "https://developers.zomato.com/api/v2.1/search?count=10&lat=40.7648&lon=-73.9808&radius=1000",
-         url: queryURL,
-         method: "GET",
-         dataType: "json",
-         headers: {
-         "user-key": "495fd465b1df3b6ee70c8cd31b998836"
-         }
-       }).then(function(response) {
-         console.log(response);
-         console.log
-         var results = response.restaurants;
-         console.log(results);
-         $("#zomato").empty();
-         var locations = [];
-         for (var i = 0; i < 6 ; i++) {
-           console.log(results[i].restaurant.name)
-          //  console.log(results[i].restaurant.location.address)
-          //  console.log(results[i].restaurant.menu_url)
-          //  console.log(results[i].restaurant.cuisines)
-          //  console.log(results[i].restaurant.average_cost_for_two)
- 
-           // newCard.text(results[i].restaurant.name);
-           var restCard = $("<div class='restaurantCard'>");
-           restCard.append("<a id='restName' href="+results[i].restaurant.menu_url+">"+results[i].restaurant.name+ "</a>");
-           restCard.append("<div class='restAddress'>Address: "+results[i].restaurant.location.address+"</div>");
-           restCard.append("<div class='restCuisine'>Cuisine: "+results[i].restaurant.cuisines+"</div>");
-           restCard.append("<div class='restCost'>Cost for two: "+results[i].restaurant.average_cost_for_two+"</div>");
- 
-           $("#zomato").append(restCard);
+    url: queryURL,
+    method: "GET",
+    dataType: "json",
+    headers: {
+      "user-key": "495fd465b1df3b6ee70c8cd31b998836"
+    }
+  }).then(function(response) {
+    console.log(response);
+    console.log;
+    var results = response.restaurants;
+    console.log(results);
+    $("#zomato").empty();
+    var locations = [];
+    for (var i = 0; i < 6; i++) {
+      console.log(results[i].restaurant.name);
+      //  console.log(results[i].restaurant.location.address)
+      //  console.log(results[i].restaurant.menu_url)
+      //  console.log(results[i].restaurant.cuisines)
+      //  console.log(results[i].restaurant.average_cost_for_two)
 
-           // Add latitude / longitude info from each restaurant into an array of coordinates
-           var lat = results[i].restaurant.location.latitude;
-           var lng = results[i].restaurant.location.longitude;
-           var name = results[i].restaurant.name;
-           var address = results[i].restaurant.location.address;
+      // newCard.text(results[i].restaurant.name);
+      //  <i class="small material-icons fav">favorite_border</i>
+      //  <i class="small material-icons fav">favorite</i>
 
-           var rCoords = [lat,lng];
+      var favIcon = $("<i>").text("favorite_border");
+      favIcon.addClass("tiny material-icons fav");
+      favIcon.attr("data-state", "hate");
 
-            var restaurantInfo = {
-              coords : rCoords,
-              name : name,
-              address : address
-            }
+      var restCard = $("<div class='restaurantCard'>");
+      restCard.append(
+        "<a id='restName' href=" +
+          results[i].restaurant.menu_url +
+          ">" +
+          results[i].restaurant.name +
+          "</a>"
+      );
+      restCard.append(favIcon);
+      restCard.append(
+        "<div class='restAddress'>Address: " +
+          results[i].restaurant.location.address +
+          "</div>"
+      );
+      restCard.append(
+        "<div class='restCuisine'>Cuisine: " +
+          results[i].restaurant.cuisines +
+          "</div>"
+      );
+      restCard.append(
+        "<div class='restCost'>Cost for two: " +
+          results[i].restaurant.average_cost_for_two +
+          "</div>"
+      );
 
-            locations.push(restaurantInfo);
+      $("#zomato").append(restCard);
 
-          //  addMarker(coordinates,restaurantGroup);
- 
-         }
-         locations.forEach(function(element) {
-          addRMarker(element,restaurantGroup);
-         });
-     });
-   }
+      // Add latitude / longitude info from each restaurant into an array of coordinates
+      var lat = results[i].restaurant.location.latitude;
+      var lng = results[i].restaurant.location.longitude;
+      var name = results[i].restaurant.name;
+      var address = results[i].restaurant.location.address;
 
-   $(document).ready(function() {
-    // $("#search").on("click", function() {
-      $("#search").on("keypress", function(e) {
-      // alert(e.which);
-      var key = e.which;
-      if (key === 13) {
-        event.preventDefault();
-        // if enter key
-        // var myAddress = $("#addressBox")
-        var myAddress = $("#search")
-          .val()
-          .trim();
-  
-       var queryURL = buildQueryURL(myAddress);
-        console.log('queryUrl: ' + queryURL);
-  
-        $.ajax({
-          url: queryURL,
-          headers: {
-            Accept: "image/*"
-          },
-          method: "GET"
-        }).then(updateMap);
-      }
+      var rCoords = [lat, lng];
 
+      var restaurantInfo = {
+        coords: rCoords,
+        name: name,
+        address: address
+      };
+
+      locations.push(restaurantInfo);
+
+      //  addMarker(coordinates,restaurantGroup);
+    }
+    locations.forEach(function(element) {
+      addRMarker(element, restaurantGroup);
     });
-       
-
   });
-  
+}
+
+$(document).ready(function() {
+  // $("#search").on("click", function() {
+  $("#search").on("keypress", function(e) {
+    // alert(e.which);
+    var key = e.which;
+    if (key === 13) {
+      event.preventDefault();
+      // if enter key
+      // var myAddress = $("#addressBox")
+      var myAddress = $("#search")
+        .val()
+        .trim();
+
+      var queryURL = buildQueryURL(myAddress);
+      console.log("queryUrl: " + queryURL);
+
+      $.ajax({
+        url: queryURL,
+        headers: {
+          Accept: "image/*"
+        },
+        method: "GET"
+      }).then(updateMap);
+    }
+  });
+
+  // function to handle clicking on Favorite icon
+  $(document).on("click", ".fav", function() {
+    if ($(this).attr("data-state") === "hate") {
+      $(this).empty();
+      $(this).text("favorite");
+      $(this).attr("data-state", "love");
+      // addFavorite($(this).attr("data-id"));
+    } else {
+      $(this).empty();
+      $(this).text("favorite-border");
+      $(this).attr("data-state", "hate");
+      // removeFavorite($(this).attr("data-id"));
+    }
+  });
+});
 
 // Google Geolocation / geocoding API Key: AIzaSyDfe8FcVBVkJX2yP6vNEyjLGyxsJ_oJMGI
-
