@@ -10,9 +10,13 @@ var config = {
 firebase.initializeApp(config);
 
 function login() {
+  var state = $(".loginLink").attr("data-state");
+  if (state === "signedout"){
+
   function newLoginHappened(user) {
     if (user) {
       // User is signed in
+      $(".loginLink").attr("data-state","signedin");
       app(user);
     } else {
       var provider = new firebase.auth.GoogleAuthProvider();
@@ -21,29 +25,37 @@ function login() {
   }
 
   firebase.auth().onAuthStateChanged(newLoginHappened);
+
+} else {
+  signOut();
+}
+
 }
 
 function signOut() {
   firebase.auth().signOut().then(function() {
       // Sign-out successful.
-      $(".userInfo").empty();
+      $(".loginLink").html("<a href='#'>Login</a>");
+      $(".loginLink").attr("data-state","signedout");
+      // $(".userInfo").empty();
     })
     .catch(function(error) {
-      // An error happened.
+      console.log(error);
     });
 }
 
 function app(user) {
   console.log(user);
-  var userText = $("<p>").text("Welcome ");
-  var uName = $("<span>").text(user.displayName + "!");
-  userText.append(uName);
-  $(".userInfo").append(userText);
+  $(".loginLink").html("Welcome "+user.displayName+"! " + "<a href='#'>Sign out</a>");
+  // var userText = $("<p>").text("Welcome ");
+  // var uName = $("<span>").text(user.displayName + "!");
+  // userText.append(uName);
+  // $(".userInfo").append(userText);
   // $("#clientName").html(user.displayName + "!");
 }
 
 $(document).ready(function() {
-  $("#loginLink").on("click",login);
-  $("#signoutLink").on("click",signOut);
+  $(".loginLink").on("click",login);
+  // $("#signoutLink").on("click",signOut);
 });
 
