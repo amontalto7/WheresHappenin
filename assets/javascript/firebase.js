@@ -35,6 +35,7 @@ function login() {
 function signOut() {
   firebase.auth().signOut().then(function() {
       // Sign-out successful.
+      $(".loginLink").empty();
       $(".loginLink").html("<a href='#'>Login</a>");
       $(".loginLink").attr("data-state","signedout");
       // $(".userInfo").empty();
@@ -46,7 +47,8 @@ function signOut() {
 
 function app(user) {
   console.log(user);
-  $(".loginLink").html("Welcome "+user.displayName+"! " + "<a href='#'>Sign out</a>");
+  // $(".loginLink").html("Welcome "+user.displayName+"! " + "<a href='#'>Sign out</a>");
+  $(".loginLink").html("Welcome! <a href='#'>Sign out</a>");
   // var userText = $("<p>").text("Welcome ");
   // var uName = $("<span>").text(user.displayName + "!");
   // userText.append(uName);
