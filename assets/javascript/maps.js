@@ -4,7 +4,34 @@
 // MapBox token for this WheresHappenin project: USE THIS ONE
 // pk.eyJ1IjoiYW1vbnRhbHRvIiwiYSI6ImNqb2Q3Y2I4MDB2OWkzcG4ybnp2bzJnenoifQ.On1P5Xmo3zQb7OQQANE9YA
 
-var mymap = L.map("mapid").setView([51.505, -0.09], 13);
+// initialize map
+var mymap
+ = L.map("mapid").setView([51.505, -0.09], 13);
+
+// lisener to check if user location is available
+ function onLocationFound(e) {
+  var radius = e.accuracy / 2;
+
+  L.marker(e.latlng)
+    .addTo(mymap)
+    .bindPopup("You are within " + radius + " meters from this point")
+    .openPopup();
+
+  L.circle(e.latlng, radius).addTo(mymap);
+  
+  var coordinates=[e.latlng.lat,e.latlng.lng];
+  displayAll(coordinates);
+}
+
+mymap.on("locationfound", onLocationFound);
+
+function onLocationError(e) {
+  console.log(e.message);
+}
+
+mymap.on("locationerror", onLocationError);
+
+ mymap.locate({setView: true, maxZoom: 16});
 // console.log(mymap);
 
 // CREATE A TILE LAYER - (Street view, satellite view, etc)
@@ -106,6 +133,11 @@ function addEMarker(place, layer) {
   marker.bindPopup("<b>" + name + "</b><br>" + address);
 }
 
+function displayAll(coordinates){
+  displayRestaurants(coordinates);
+  displayEvent(coordinates);
+}
+
 function updateMap(geoData) {
   console.log(geoData);
   var coordinates = convertAddress(geoData);
@@ -117,6 +149,5 @@ function updateMap(geoData) {
   restaurantGroup.clearLayers();
   // add new marker
   addMarker(globalPlace, markerGroup);
-  displayRestaurants(coordinates);
-  displayEvent(coordinates);
+  displayAll(coordinates);
 }
