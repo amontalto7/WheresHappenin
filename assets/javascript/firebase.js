@@ -48,7 +48,11 @@ function signOut() {
 function app(user) {
   console.log(user);
   // $(".loginLink").html("Welcome "+user.displayName+"! " + "<a href='#'>Sign out</a>");
-  $(".loginLink").html("Welcome! <a href='#'>Sign out</a>");
+  var welcomeText = $("<span>").text("Welcome! ");
+  var signOut = $("<a href='#'>").text("Sign Out");
+  $(".loginLink").append(welcomeText);
+  $(".loginLink").append(signOut);
+
   // var userText = $("<p>").text("Welcome ");
   // var uName = $("<span>").text(user.displayName + "!");
   // userText.append(uName);
