@@ -51,10 +51,10 @@ function displayEvent(coords) {
     method: "GET",
     dataType: "json"
   }).then(function(response) {
-    console.log(response);
+  //  console.log(response);
 
     var results = response.events;
-    console.log(results);
+  //  console.log(results);
 
     $("#eventbrite").empty();
     var locations = [];
@@ -85,9 +85,37 @@ function displayEvent(coords) {
       );
       eventCard.append("<div class='eventStart'>Time: " + startTime + "</div>");
 
+
       $("#eventbrite").append(eventCard);
 
-    }
+// Get the cost
+// for reference event with cost: https://www.eventbriteapi.com/v3/events/49212779749/ticket_classes/?token=TIAV75OSYBH2MPVU3O2B 
+
+// -----------------
+// EVENT ID IS HERE:
+//   var eventID = results[i].id;
+// -----------------
+
+  //    $.ajax({
+  //   url: "https://www.eventbriteapi.com/v3/events/" + eventID + "/ticket_classes/?token=TIAV75OSYBH2MPVU3O2B",
+  //   url: "https://www.eventbriteapi.com/v3/events/49212779749/ticket_classes/?token=TIAV75OSYBH2MPVU3O2B",
+  //      method: "GET",
+  //      dataType: "json"
+  //    }).then(function(response) {
+  //     console.log(response);
+  //    var priceEvent = response.ticket_classes[0].cost.display;
+  //     console.log(priceEvent)
+
+   //   if (priceEvent === null ) {
+    //   eventCard.append("<div class='eventPrice'>Price: " + priceEvent + "</div>") }
+    // else {
+    // eventCard.append("<div class='eventPrice'>Price: free</div>") }
+   
+  //    })
+  // }  
+
+  
+  
 // console.log("VenueInfo");
 // console.log(venueIDs);
     // 2nd ajax call to get venue information
@@ -104,7 +132,7 @@ function displayEvent(coords) {
         method: "GET",
         dataType: "json"
       }).then(function(response) {
-        console.log(response);
+      //  console.log(response);
 
         var latitude = response.latitude;
         var longitude = response.longitude;
@@ -126,7 +154,8 @@ function displayEvent(coords) {
         addEMarker(eventInfo, restaurantGroup);
       });
     });
-  });
+  };
+});
 }
 
 // displayEvent();

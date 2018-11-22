@@ -68,14 +68,13 @@ function displayRestaurants(coords) {
       "user-key": "495fd465b1df3b6ee70c8cd31b998836"
     }
   }).then(function(response) {
-    console.log(response);
-    console.log;
+  //  console.log(response);
     var results = response.restaurants;
-    console.log(results);
+  //  console.log(results);
     $("#zomato").empty();
     var locations = [];
     for (var i = 0; i < 6; i++) {
-      console.log(results[i].restaurant.name);
+  //    console.log(results[i].restaurant.name);
       //  console.log(results[i].restaurant.location.address)
       //  console.log(results[i].restaurant.menu_url)
       //  console.log(results[i].restaurant.cuisines)
