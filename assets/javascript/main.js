@@ -162,7 +162,7 @@ function displayRestaurants(coords) {
       }
     });
   });
-}
+
 
 $(document).ready(function() {
   // $("#search").on("click", function() {
