@@ -1,7 +1,7 @@
 .restaurantCard {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    border: 1px solid;
-    border-color: black;
+    /* border: 1px solid; */
+    /* border-color: black; */
     padding: 10px;
     margin-bottom: 10px;
 }

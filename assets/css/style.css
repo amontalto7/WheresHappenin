@@ -7,6 +7,9 @@
 #logo-container {
     font-family: 'Acme', sans-serif;
 }
+body.disableOutline *:focus{
+    outline: none !important;
+}
 
 
 
@@ -16,8 +19,9 @@
 /* ----------------------------------------------------------- */
 #mapid { 
     margin-top: 10px;
-    height: 400px;
-    width: 500px; 
+    height: 500px;
+    
+    
 }
 
 /* ----------------------------------------------------------- */
@@ -30,18 +34,32 @@
 /* ----------------------------------------------------------- */
 .restaurantCard, .eventsCard {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    border: 1px solid;
-    border-color: black;
+    /* border: 1px solid; */
+    /* border-color: black; */
     padding: 10px;
     margin-bottom: 10px;
 }
 
-#restName, #eventName {
-    font-size: 1.1rem;
+#eventName, #resname {
+    /* font-size: 1.5em; */
+    color: #D81B60;
+    font-family: cursive;
+}
+
+#eventName {
+    text-align: left;
+    text-overflow: ellipsis;
 }
 
 .restAddress, .restCuisine, .restCost, .eventStart {
-    font-size: .8rem;
+    font-size: .8em;
+    font-family: monospace;
+}
+
+tbody {
+    display:block;
+    height:120px;
+    overflow:auto;
 }
 
 .fav {
