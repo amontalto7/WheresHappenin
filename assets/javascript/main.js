@@ -84,23 +84,23 @@ function displayRestaurants(coords) {
  
            // newCard.text(results[i].restaurant.name);
            var restCard = $("<div id=restur1 class='restaurantCard"+[i]+"'>");
-           restCard.append("<li class='collection-item'><a id='resname' href='#modal"+[i]+"'>"+results[i].restaurant.name+ " </a> <div id='zomatolist"+[i]+"> <a href='#!' class='secondary-content waves-effect waves-light btn-small-flat'><i class='material-icons'>favorite_border</i></a>")
-          //  restCard.append("<a id='restName' href="+results[i].restaurant.menu_url+">"+results[i].restaurant.name+ "</a>");
+           restCard.append("<li class='collection-item modal-trigger' href='#modal"+[i]+"'><a id='resname'>"+results[i].restaurant.name+ " </a> <div id='zomatolist"+[i]+"> <a href='#!' class='secondary-content waves-effect waves-light btn-small-flat'><i class='material-icons'>favorite_border</i></a>");
            restCard.append("<div class='restAddress'>Address: "+results[i].restaurant.location.address+"</div>");
            restCard.append("<div class='restCuisine'>Cuisine: "+results[i].restaurant.cuisines+"</div>");
            restCard.append("<div class='restCost'>Cost for two: "+results[i].restaurant.average_cost_for_two+"</div></li>");
            
            $("#zomatofile").append(restCard);
+
+          //  Modal info 
+          var modalCard = $("<div id='modal"+[i]+"' class='modal bottom-sheet'>");
+          modalCard.append("<div class='modal-content'> <a id='restName' href=" + results[i].restaurant.menu_url + ">" +results[i].restaurant.name +"</a></div>");
+          modalCard.append("<div class='modal-footer'><a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>Agree</a></div>")
+
+          $("#modalCards").append(modalCard);
+
+
           
-           var restList = $("<div class='restaurantList'>");
-           restList.append("<a href='#!' id='zomatolist"+[i]+" class='secondary-content waves-effect waves-light btn-small-flat'><i class='material-icons'>favorite_border</i></a>")
-           $()
 
-           document.getElementById("restur1").addEventListener("click", myFunction);
-
-          function myFunction() {
-              $('#modal1').modal('show');
-              }
         
 
 
@@ -164,7 +164,21 @@ function displayRestaurants(coords) {
 
   });
   
-  
+  $('.modal').modal({
+    dismissible: true, // Modal can be dismissed by clicking outside of the modal
+    opacity: .5, // Opacity of modal background
+    inDuration: 300, // Transition in duration
+    outDuration: 200, // Transition out duration
+    startingTop: '4%', // Starting top style attribute
+    endingTop: '10%', // Ending top style attribute
+    ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+    //  alert("Ready");
+      console.log(modal, trigger);
+    },
+    complete: function() { //alert('Closed');
+    } // Callback for Modal close
+  }
+);
 
 // Google Geolocation / geocoding API Key: AIzaSyDfe8FcVBVkJX2yP6vNEyjLGyxsJ_oJMGI
 
