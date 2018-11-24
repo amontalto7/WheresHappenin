@@ -62,6 +62,20 @@ tbody {
     overflow:auto;
 }
 
+.fav {
+    color: red;
+    margin-left: 20px;
+}
+
+.fav:hover {
+    cursor: cell;
+}
+
+.signoutLink {
+    display: none;
+}
+
+
 /* ----------------------------------------------------------- */
 /* Endfor Zomato API & Eventbrite API*/
 /* ----------------------------------------------------------- */

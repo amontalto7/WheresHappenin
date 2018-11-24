@@ -5,10 +5,10 @@
 // })
 
 var globalPlace = {
-  coords : [],
-  name : "",
+  coords: [],
+  name: "",
   address: ""
-}
+};
 
 function buildQueryURL(address) {
   // base queryURL
@@ -37,15 +37,18 @@ function buildZomatoURL(coords) {
   // base queryURL
   var queryURL = "https://developers.zomato.com/api/v2.1/search?";
   // Begin building an object to contain our API call's query parameters
-  var queryParams = { count: 5 };
+  var queryParams = { count: 100 };
 
   // Grab the datavalue from the button clicked
+  queryParams.entity_id = 280;
   queryParams.entity_type = "zone";
   queryParams.lat = coords[0];
   queryParams.lon = coords[1];
-  queryParams.radius = 500;
-  queryParams.sort="real_distance";
-  queryParams.order="asc;"
+  queryParams.radius = 1000;
+  // queryParams.sort="real_distance";
+  queryParams.collection_id = 1;
+  queryParams.sort = "rating";
+  queryParams.order = "asc;";
 
   // get the limit
   //   queryParams.limit = limit;
@@ -56,10 +59,9 @@ function buildZomatoURL(coords) {
   return queryURL + $.param(queryParams);
 }
 
-
 function displayRestaurants(coords) {
-  var queryURL = buildZomatoURL(coords)
-  console.log("zomato URL: "+ queryURL);
+  var queryURL = buildZomatoURL(coords);
+  console.log("zomato URL: " + queryURL);
   $.ajax({
     //  url: "https://developers.zomato.com/api/v2.1/search?count=10&lat=40.7648&lon=-73.9808&radius=1000",
          url: queryURL,
@@ -158,12 +160,36 @@ function displayRestaurants(coords) {
           method: "GET"
         }).then(updateMap);
       }
-
     });
-       
-
   });
-  
+}
+
+$(document).ready(function() {
+  // $("#search").on("click", function() {
+  $("#search").on("keypress", function(e) {
+    // alert(e.which);
+    var key = e.which;
+    if (key === 13) {
+      event.preventDefault();
+      // if enter key
+      // var myAddress = $("#addressBox")
+      var myAddress = $("#search")
+        .val()
+        .trim();
+
+      var queryURL = buildQueryURL(myAddress);
+      console.log("queryUrl: " + queryURL);
+
+      $.ajax({
+        url: queryURL,
+        headers: {
+          Accept: "image/*"
+        },
+        method: "GET"
+      }).then(updateMap);
+    }
+  });
+
   $('.modal').modal({
     dismissible: true, // Modal can be dismissed by clicking outside of the modal
     opacity: .5, // Opacity of modal background
@@ -180,5 +206,20 @@ function displayRestaurants(coords) {
   }
 );
 
-// Google Geolocation / geocoding API Key: AIzaSyDfe8FcVBVkJX2yP6vNEyjLGyxsJ_oJMGI
+  // function to handle clicking on Favorite icon
+  $(document).on("click", ".fav", function() {
+    if ($(this).attr("data-state") === "hate") {
+      $(this).empty();
+      $(this).text("favorite");
+      $(this).attr("data-state", "love");
+      // addFavorite($(this).attr("data-id"));
+    } else {
+      $(this).empty();
+      $(this).text("favorite-border");
+      $(this).attr("data-state", "hate");
+      // removeFavorite($(this).attr("data-id"));
+    }
+  });
+});
 
+// Google Geolocation / geocoding API Key: AIzaSyDfe8FcVBVkJX2yP6vNEyjLGyxsJ_oJMGI
