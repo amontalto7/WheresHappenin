@@ -1,5 +1,8 @@
 // Zomato - restaurants
 // API key - 495fd465b1df3b6ee70c8cd31b998836
+// $(document).ready(function(){
+// $('.modal').modal();
+// })
 
 var globalPlace = {
   coords : [],
@@ -80,14 +83,30 @@ function displayRestaurants(coords) {
           //  console.log(results[i].restaurant.average_cost_for_two)
  
            // newCard.text(results[i].restaurant.name);
-           var restCard = $("<div class='restaurantCard'>");
-           restCard.append("<a id='restName' href="+results[i].restaurant.menu_url+">"+results[i].restaurant.name+ "</a>");
+           var restCard = $("<div id=restur1 class='restaurantCard"+[i]+"'>");
+           restCard.append("<li class='collection-item'><a id='resname' href='#modal"+[i]+"'>"+results[i].restaurant.name+ " </a> <div id='zomatolist"+[i]+"> <a href='#!' class='secondary-content waves-effect waves-light btn-small-flat'><i class='material-icons'>favorite_border</i></a>")
+          //  restCard.append("<a id='restName' href="+results[i].restaurant.menu_url+">"+results[i].restaurant.name+ "</a>");
            restCard.append("<div class='restAddress'>Address: "+results[i].restaurant.location.address+"</div>");
            restCard.append("<div class='restCuisine'>Cuisine: "+results[i].restaurant.cuisines+"</div>");
-           restCard.append("<div class='restCost'>Cost for two: "+results[i].restaurant.average_cost_for_two+"</div>");
- 
-           $("#zomato").append(restCard);
+           restCard.append("<div class='restCost'>Cost for two: "+results[i].restaurant.average_cost_for_two+"</div></li>");
+           
+           $("#zomatofile").append(restCard);
+          
+           var restList = $("<div class='restaurantList'>");
+           restList.append("<a href='#!' id='zomatolist"+[i]+" class='secondary-content waves-effect waves-light btn-small-flat'><i class='material-icons'>favorite_border</i></a>")
+           $()
 
+           document.getElementById("restur1").addEventListener("click", myFunction);
+
+          function myFunction() {
+              $('#modal1').modal('show');
+              }
+        
+
+
+
+
+           
            // Add latitude / longitude info from each restaurant into an array of coordinates
            var lat = results[i].restaurant.location.latitude;
            var lng = results[i].restaurant.location.longitude;
@@ -111,6 +130,8 @@ function displayRestaurants(coords) {
           addRMarker(element,restaurantGroup);
          });
      });
+
+         
    }
 
    $(document).ready(function() {
@@ -142,6 +163,7 @@ function displayRestaurants(coords) {
        
 
   });
+  
   
 
 // Google Geolocation / geocoding API Key: AIzaSyDfe8FcVBVkJX2yP6vNEyjLGyxsJ_oJMGI

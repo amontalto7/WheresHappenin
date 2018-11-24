@@ -81,9 +81,9 @@ function displayEvent(coords) {
       };
       venueIDs.push(venueInfo);
       eventCard.append(
-        "<a id='eventName' href=" + results[i].url + ">" + name + "</a>"
+        "<li class='collection-item'><a id='eventName' href=" + results[i].url + ">" + name + "</a> <div id='eventList"+[i]+"> <a class='secondary-content waves-effect waves-light btn-small-flat'><i class='material-icons'>favorite_border</i></a>"
       );
-      eventCard.append("<div class='eventStart'>Time: " + startTime + "</div>");
+      eventCard.append("<div class='eventStart'>Time: " + startTime + "</div> </li>");
 
       $("#eventbrite").append(eventCard);
 

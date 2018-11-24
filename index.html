@@ -54,9 +54,69 @@
         <li><a href="/location">Login</a></li>
       </ul>
         
+      
+   <!-- Map location    -->
+      <div class="container">
+        <div class="row">
+          <div class="col s12 center">
+          <div id="mapid"></div>
+            </div>
+            </div>
+          </div>
+
+<!-- Restaurant list -->
+<div class="container">
+  <div class="row">
+    <div class="col l4 m8 s12">
+<ul class="collection with-header">
+    <li class="collection-header"><h4>Chow</h4></li>
+    <tbody>
+    <li class="collection-item"><div id="zomatofile"></div></li>
+  </tbody>
+    <!-- <a href="#!" class="secondary-content waves-effect waves-light btn-small-flat"><i class="material-icons">favorite_border</i></a> -->
+
+  </ul>
+    </div> 
+    <!-- Eventbrite list    -->
+    <div class="col l4 m8 s12">
+        <ul class="collection with-header">
+            <li class="collection-header"><h4>Hang</h4></li>
+            <tbody>
+            <li class="collection-item"><div id="eventbrite"></div></li>
+          </tbody>
+            <!-- <a href="#!" class="secondary-content waves-effect waves-light btn-small-flat"><i class="material-icons">favorite_border</i></a> -->
+        
+          </ul>
+            </div> 
+    <!-- Favorites  -->
+    <div class="col l4 m8 s12">
+        <ul class="collection with-header">
+            <li class="collection-header"><h4>Favorites</h4></li>
+            <tbody>
+            <li class="collection-item"><div id="favorites"></div></li>
+          </tbody>
+            <!-- <a href="#!" class="secondary-content waves-effect waves-light btn-small-flat"><i class="material-icons">favorite_border</i></a> -->
+        
+          </ul>
+            </div> 
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- data list -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="container col s12 m7 l5">
       <ul class="collapsible" data-collapsible="accordion">
         <li>
@@ -64,7 +124,10 @@
             <i class="material-icons">local_dining</i>Restaurant
           </div>
           <div class="collapsible-body">
-              <div id="zomato"></div>
+              <div id="zomato"> 
+                  <button data-target="modal1" class="btn modal-trigger">Modal</button>   
+              </div>
+
           </div>
         </li>
         <li>
@@ -72,10 +135,10 @@
             <i class="material-icons">local_play</i>Events
           </div>
           <div class="collapsible-body">
-            <div id="eventbrite"></div>
+            <div id="eventbrite"></div>1
           </div>
         </li>
-      <!--  <li>
+        <li>
           <div class="collapsible-header">
             <i class="material-icons">music_video</i>Concert
           </div>
@@ -83,12 +146,19 @@
             <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, totam?</span>
           </div>
         </li> -->
-      </ul>
-      </div>
-      <!-- Map Here -->
-      <div class="container">
-    <div id="mapid"></div>
-      </div>
+      <!-- </ul> -->
+      <!-- </div> -->
+
+      <div id="modal1" class="modal">
+          <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+          </div>
+        </div>
+  
     </div>
 
 
@@ -109,6 +179,7 @@
     $(document).ready(function(){
         $('.sidenav').sidenav();
         $(".dropdown-trigger").dropdown();
+        $('.modal').modal();
         $('.collapsible').collapsible();
         
 
