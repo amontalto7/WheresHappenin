@@ -11,7 +11,7 @@ firebase.initializeApp(config);
 
 function login() {
   var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider);
+  firebase.auth().signInWithRedirect(provider);
  
   function newLoginHappened(user) {
     if (user) {
