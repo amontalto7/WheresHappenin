@@ -16,10 +16,17 @@ function login() {
       app(user);
     } else {
       var provider = new firebase.auth.GoogleAuthProvider();
-      firebase.auth().signInWithRedirect(provider);
+      firebase.auth().signInWithRedirect(provider);    
     }
   }
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithRedirect(provider);
+
+  $(".loginLink").css("display","none");
+  $(".signoutLink").css("display","block");
   firebase.auth().onAuthStateChanged(newLoginHappened);
+
+
 }
 
 function signOut() {
@@ -27,6 +34,7 @@ function signOut() {
       // Sign-out successful.
       $(".loginLink").css("display","block");
       $(".signoutLink").css("display","none");
+      // clear "Welcome" area
     })
     .catch(function(error) {
       console.log(error);
@@ -38,8 +46,7 @@ function app(user) {
   // $(".loginLink").html("Welcome "+user.displayName+"! " + "<a href='#'>Sign out</a>");
   var welcomeText = $("<span>").text("Welcome! ");
   welcomeText.append(user.displayName);
-  $(".loginLink").css("display","none");
-  $(".signoutLink").css("display","block");
+
 }
 
 $(document).ready(function() {
