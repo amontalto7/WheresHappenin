@@ -9,6 +9,9 @@ var config = {
 };
 firebase.initializeApp(config);
 
+// Create a variable to reference the database.
+const database = firebase.database();
+
 function login() {
   var provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope("profile");
@@ -48,8 +51,8 @@ function app(user) {
   var fullName = user.displayName;
   var splitName = fullName.split(" ");
 
-  var welcomeText = $("<span>").text("Welcome! ");
-  welcomeText.append(splitName[0]);
+  var welcomeText = $("<span>").text("Welcome ");
+  welcomeText.append(splitName[0]+"!");
   $(".userWelcome").append(welcomeText)
 }
 
