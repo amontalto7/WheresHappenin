@@ -76,6 +76,7 @@ function displayEvent(coords) {
 
       var name = results[i].name.text;
       var vID = results[i].venue_id;
+      var eventID = results[i].id;
       var venueInfo = {
         venueID : vID,
         eventName : name
@@ -130,6 +131,8 @@ function displayEvent(coords) {
 
                     var favIconLink = $("<a>");
                     favIconLink.attr("href","#!");
+                    favIconLink.attr("data-id",eventID);
+                    favIconLink.attr("data-type","Event")
                     favIconLink.addClass("secondary-content waves-effect waves-light btn-small-flat fav");
         
                       var favIcon = $("<i>");

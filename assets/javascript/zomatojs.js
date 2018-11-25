@@ -8,13 +8,13 @@ function buildZomatoURL(coords) {
   var queryParams = { count: 20 };
 
   // Grab the datavalue from the button clicked
-  queryParams.entity_id = 280;
+  // queryParams.entity_id = 280;
   queryParams.entity_type = "zone";
   queryParams.lat = coords[0];
   queryParams.lon = coords[1];
   queryParams.radius = 1000;
   // queryParams.sort="real_distance";
-  queryParams.collection_id = 1;
+  // queryParams.collection_id = 1;
   queryParams.sort = "rating";
   queryParams.order = "asc;";
 
@@ -52,9 +52,9 @@ function displayRestaurants(coords) {
           //  console.log(results[i].restaurant.menu_url)
           //  console.log(results[i].restaurant.cuisines)
           //  console.log(results[i].restaurant.average_cost_for_two)
- 
-           // newCard.text(results[i].restaurant.name);
-           var restCard = $("<div>");
+          var restID = results[i].restaurant.id;
+
+          var restCard = $("<div>");
            var restCardClasses = "restaurantCard restaurantCard"+i;
            restCard.addClass(restCardClasses)
            restCard.attr("id","restur"+i);
@@ -107,6 +107,8 @@ function displayRestaurants(coords) {
 
                 var favIconLink = $("<a>");
                 favIconLink.attr("href","#!");
+                favIconLink.attr("data-id",restID);
+                favIconLink.attr("data-type","Restaurant")
                 favIconLink.addClass("secondary-content waves-effect waves-light btn-small-flat fav");
 
                   var favIcon = $("<i>");
