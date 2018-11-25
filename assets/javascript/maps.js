@@ -13,11 +13,11 @@ var mymap
   var radius = e.accuracy / 2;
 
   L.marker(e.latlng)
-    .addTo(mymap)
+    .addTo(markerGroup)
     .bindPopup("You are within " + radius + " meters from this point")
     .openPopup();
 
-  L.circle(e.latlng, radius).addTo(mymap);
+  L.circle(e.latlng, radius).addTo(markerGroup);
   
   var coordinates=[e.latlng.lat,e.latlng.lng];
   displayAll(coordinates);
@@ -129,7 +129,7 @@ function updateMap(geoData) {
   console.log(geoData);
   var coordinates = convertAddress(geoData);
 
-  mymap.setView(coordinates, 14);
+  mymap.setView(coordinates, 15);
 
   // clear previous markers
   markerGroup.clearLayers();
