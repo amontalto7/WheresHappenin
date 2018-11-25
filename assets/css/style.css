@@ -5,7 +5,7 @@
 #sidenav-overlay { z-index: 1; }
 
 #logo-container {
-    font-family: 'Acme', sans-serif;
+    font-family: 'Karla', sans-serif;
 }
 body.disableOutline *:focus{
     outline: none !important;
@@ -32,16 +32,16 @@ body.disableOutline *:focus{
 /* ----------------------------------------------------------- */
 .restaurantCard, .eventsCard {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    /* border: 1px solid; */
+    /* border-bottom: 1px solid; */
     /* border-color: black; */
-    padding: 10px;
-    margin-bottom: 10px;
+    /* padding: 5px; */
+    /* margin-bottom: 5px; */
 }
 
 #eventName, #resname {
     /* font-size: 1.5em; */
     color: #D81B60;
-    font-family: cursive;
+    font-family: 'Karla', sans-serif;
 }
 
 #eventName {
@@ -51,7 +51,7 @@ body.disableOutline *:focus{
 
 .restAddress, .restCuisine, .restCost, .eventStart {
     font-size: .8em;
-    font-family: monospace;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 tbody {
@@ -60,17 +60,20 @@ tbody {
     overflow:auto;
 }
 
+.modalName {
+    font-size: 1.5em;
+}
+
 .fav {
-    color: red;
-    margin-left: 20px;
+    color: #26a69a;
 }
 
 .fav:hover {
     cursor: cell;
 }
 
-.signoutLink {
-    display: none;
+.favorited {
+    color: gold;
 }
 
 
