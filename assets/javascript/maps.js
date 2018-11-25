@@ -65,19 +65,6 @@ var customIcon = L.Icon.extend({
 var rIcon = new customIcon({ iconUrl: "icons8-marker-40red.png" });
 var eIcon = new customIcon({ iconUrl: "icons8-marker-40blue.png" });
 
-//-------------------------------------------------------------
-
-// MAP EVENTS (test by clicking on the map)
-var locationPopup = L.popup();
-
-function onMapClick(e) {
-  locationPopup
-    .setLatLng(e.latlng)
-    .setContent("You clicked the map at " + e.latlng.toString())
-    .openOn(mymap);
-}
-
-mymap.on("click", onMapClick);
 
 // URL to look up Latitude & Longitude of an address
 // https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyDfe8FcVBVkJX2yP6vNEyjLGyxsJ_oJMGI
