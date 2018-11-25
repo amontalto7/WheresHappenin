@@ -102,17 +102,7 @@ $(document).ready(function() {
 
   // function to handle clicking on Favorite icon
   $(document).on("click", ".fav", function() {
-    if ($(this).attr("data-state") === "hate") {
-      $(this).empty();
-      $(this).text("favorite");
-      $(this).attr("data-state", "love");
-      // addFavorite($(this).attr("data-id"));
-    } else {
-      $(this).empty();
-      $(this).text("favorite-border");
-      $(this).attr("data-state", "hate");
-      // removeFavorite($(this).attr("data-id"));
-    }
+    $(this).toggleClass("favorited");
   });
 });
 

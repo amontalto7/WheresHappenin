@@ -27,6 +27,7 @@ function buildZomatoURL(coords) {
   return queryURL + $.param(queryParams);
 }
 
+
 function displayRestaurants(coords) {
   var queryURL = buildZomatoURL(coords);
   console.log("zomato URL: " + queryURL);
@@ -61,43 +62,27 @@ function displayRestaurants(coords) {
             var modalTriggerUL = $("<ul>");
             modalTriggerUL.addClass("collection");
               var modalTriggerLI = $("<li>");
-              modalTriggerLI.addClass("collection-item modal-trigger");
-              modalTriggerLI.attr("href","#modal"+i);
+              modalTriggerLI.addClass("collection-item");
 
           // create elements to display restaurant info
                 var displayRestName = $("<a>");
-                displayRestName.addClass("resname");
+                displayRestName.addClass("resname modal-trigger");
+                displayRestName.attr("href","#modal"+i);
                 displayRestName.text(results[i].restaurant.name);
                 
                 var zomatolistdiv = $("<div>");
                 zomatolistdiv.attr("id","zomatolist"+i);
 
-                  var favIconLink = $("<a>");
-                  favIconLink.attr("href","#!");
-                  favIconLink.addClass("secondary-content waves-effect waves-light btn-small-flat");
+                // zomatolistdiv.append(favIconLink);
 
-                    var favIcon = $("<i>");
-                    favIcon.addClass("material-icons");
-                    favIcon.text("star");
+                var restAddress = $("<p>");
+                restAddress.addClass("restAddress");
+                restAddress.html(results[i].restaurant.location.address); 
 
-                  favIconLink.append(favIcon);
 
-                zomatolistdiv.append(favIconLink);
-
-                var restAddressDiv = $("<p>");
-                restAddressDiv.addClass("restAddress");
-                restAddressDiv.html(results[i].restaurant.location.address); 
-
-                var restCuisineDiv = $("<p>");
-                restCuisineDiv.addClass("restCuisine");
-                restCuisineDiv.html("Cuisine: "+results[i].restaurant.cuisines);
-
-                var restCostDiv = $("<p>");
-                restCostDiv.addClass("restCost");
-                restCostDiv.html("Cost for two: " +results[i].restaurant.average_cost_for_two);
 
               // append restaurant info to LI tags
-              modalTriggerLI.append(displayRestName, zomatolistdiv, restAddressDiv, restCuisineDiv, restCostDiv);
+              modalTriggerLI.append(displayRestName, zomatolistdiv, restAddress);
 
             // append LI tag to UL collection
             modalTriggerUL.append(modalTriggerLI);
@@ -115,22 +100,62 @@ function displayRestaurants(coords) {
               modalContent.addClass("modal-content");
                 
                 var modalRestName = $("<a>");
-                modalRestName.addClass("restName");
+                modalRestName.addClass("restName modalName");
                 modalRestName.attr("href", results[i].restaurant.menu_url);
-                modalRestName.text(results[i].restaurant.name);                
+                modalRestName.attr("target", "_blank");
+                modalRestName.html(results[i].restaurant.name);                
 
-              modalContent.append(modalRestName);
+                var favIconLink = $("<a>");
+                favIconLink.attr("href","#!");
+                favIconLink.addClass("secondary-content waves-effect waves-light btn-small-flat fav");
 
-              var modalFooter = $("<div>");
-              modalFooter.addClass("modal-footer");
+                  var favIcon = $("<i>");
+                  favIcon.addClass("material-icons");
+                  favIcon.text("star");
 
-                var modalAgree = $("<a>");
-                modalAgree.addClass("modal-action modal-close waves-effect waves-green btn-flat");
-                modalAgree.attr("href", "#!");
-                modalAgree.text("Agree");
+                favIconLink.append(favIcon);
 
-              modalFooter.append(modalAgree);
-            modalCard.append(modalContent,modalFooter)
+
+                var locationIcon = $("<i>");
+                locationIcon.addClass("material-icons");
+                locationIcon.text("location_on");
+
+                var restAddress = $("<p>");
+                restAddress.addClass("restAddress");
+                restAddress.html(results[i].restaurant.location.address); 
+                restAddress.prepend(locationIcon);
+
+                var cuisineIcon = $("<i>");
+                cuisineIcon.addClass("material-icons");
+                cuisineIcon.text("restaurant_menu");
+
+                var restCuisine = $("<p>");
+                restCuisine.addClass("restCuisine");
+                restCuisine.html("Cuisine: "+results[i].restaurant.cuisines);
+                restCuisine.prepend(cuisineIcon);
+
+                var costIcon = $("<i>");
+                costIcon.addClass("material-icons");
+                costIcon.text("attach_money");
+
+                var restCost = $("<p>");
+                restCost.addClass("restCost");
+                restCost.html("Cost for two: " +results[i].restaurant.average_cost_for_two);
+                restCost.prepend(costIcon);
+
+
+              modalContent.append(modalRestName,favIconLink,$("<hr>"),restAddress,restCuisine,restCost);
+
+              // var modalFooter = $("<div>");
+              // modalFooter.addClass("modal-footer");
+
+                // var modalAgree = $("<a>");
+                // modalAgree.addClass("modal-action modal-close waves-effect waves-green btn-flat");
+                // modalAgree.attr("href", "#!");
+                // modalAgree.text("Agree");
+
+              // modalFooter.append(modalAgree);
+            modalCard.append(modalContent)
 
           $("#modalCards").append(modalCard);
 
@@ -154,6 +179,7 @@ function displayRestaurants(coords) {
           //  addMarker(coordinates,restaurantGroup);
  
          }
+         $('.modal').modal();  // initialize modals
          locations.forEach(function(element) {
           addRMarker(element,restaurantGroup);
          });
