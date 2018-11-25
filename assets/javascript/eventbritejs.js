@@ -205,7 +205,7 @@ function displayEvent(coords) {
         method: "GET",
         dataType: "json"
       }).then(function(response) {
-       console.log(response);
+      //  console.log(response);
 
         var latitude = response.latitude;
         var longitude = response.longitude;
