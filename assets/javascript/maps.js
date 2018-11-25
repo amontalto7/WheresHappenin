@@ -53,11 +53,12 @@ L.tileLayer(
 var markerGroup = L.layerGroup().addTo(mymap);
 var restaurantGroup = L.layerGroup().addTo(mymap);
 
+const imgShadow = "https://unpkg.com/leaflet@1.3.4/dist/images/marker-shadow.png";
 // create icons for restaurants (rIcon) and events (eIcon), which inherit properties from L.Icon
 var customIcon = L.Icon.extend({
   options: {
     iconSize: [40, 42], // size of the icon
-    shadowUrl: "https://unpkg.com/leaflet@1.3.4/dist/images/marker-shadow.png",
+    shadowUrl: imgShadow,
     shadowAnchor: [12, 22] // where to anchor shadow image
   }
 });
