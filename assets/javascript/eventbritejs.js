@@ -96,9 +96,6 @@ function displayEvent(coords) {
           var eventListDiv = $("<div>");
           eventListDiv.attr("id","eventList"+i);
 
-
-          eventListDiv.append(favIconLink);
-
           var eventStartTime = $("<p>");
           eventStartTime.addClass("eventStart");
           eventStartTime.text("Time: " + startTime);
@@ -118,15 +115,15 @@ function displayEvent(coords) {
       $("#eventbrite").append(eventCard);
 
                 //  Modal info 
-                var modalCard = $("<div>");
-                modalCard.attr("id","emodal"+i);
-                modalCard.addClass("modal bottom-sheet");
+                var emodalCard = $("<div>");
+                emodalCard.attr("id","emodal"+i);
+                emodalCard.addClass("modal bottom-sheet");
     
                   var modalContent = $("<div>");
                   modalContent.addClass("modal-content");
                     
                     var modalEventName = $("<a>");
-                    modalEventName.addClass("eventName");
+                    modalEventName.addClass("eventName modalName");
                     modalEventName.attr("href", results[i].url);
                     modalEventName.attr("target", "_blank");
                     modalEventName.text(name);                
@@ -142,7 +139,7 @@ function displayEvent(coords) {
                     favIconLink.append(favIcon);
         
     
-                  modalContent.append(modalEventName, favIconLink);
+                  modalContent.append(modalEventName, favIconLink, $("<hr>"));
     
                   // var modalFooter = $("<div>");
                   // modalFooter.addClass("modal-footer");
@@ -153,9 +150,9 @@ function displayEvent(coords) {
                   //   modalAgree.text("Agree");
     
                   // modalFooter.append(modalAgree);
-                // modalCard.append(modalContent,modalFooter)
+                emodalCard.append(modalContent)
     
-              $("#modalCards").append(modalCard);
+              $("#modalCards").append(emodalCard);
     
 
 
