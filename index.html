@@ -50,44 +50,69 @@
         <li><a href="/fillups">Contacts</a></li>
         <li><a href="">Login</a></li>
 
-      </ul>
-        
-
-    <!-- data list -->
-    <div class="row">
-        <div class="container col s12 m7 l5">
-      <ul class="collapsible" data-collapsible="accordion">
-        <li>
-          <div class="collapsible-header">
-            <i class="material-icons">local_dining</i>Restaurants 
-          </div>
-          <div class="collapsible-body">
-              <div id="zomato"></div>
-          </div>
-        </li>
-        <li>
-          <div class="collapsible-header active">
-            <i class="material-icons">local_play</i>Events
-          </div>
-          <div class="collapsible-body">
-            <div id="eventbrite"></div>
-          </div>
-        </li>
-      <!--  <li>
-          <div class="collapsible-header">
-            <i class="material-icons">music_video</i>Concert
-          </div>
-          <div class="collapsible-body">
-            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, totam?</span>
-          </div>
-        </li> -->
-      </ul>
-      </div>
-      <!-- Map Here -->
+      </ul>      
+   <!-- Map location    -->
       <div class="container">
-        <div id="mapid"></div>
+        <div class="row">
+          <div class="col s12 center">
+          <div id="mapid"></div>
+            </div>
+            </div>
+          </div>
+
+<!-- Restaurant list -->
+<div class="container">
+  <div class="row">
+    <div class="col l4 m8 s12">
+<ul class="collection with-header">
+    <li class="collection-header"><h4>Chow</h4></li>
+    <tbody>
+    <li class="collection-item"><div id="zomatofile"></div></li>
+  </tbody>
+    
+
+  </ul>
+    </div> 
+    <!-- Eventbrite list    -->
+    <div class="col l4 m8 s12">
+        <ul class="collection with-header">
+            <li class="collection-header"><h4>Hang</h4></li>
+            <tbody>
+            <li class="collection-item"><div id="eventbrite"></div></li>
+          </tbody>
+          
+        
+          </ul>
+            </div> 
+    <!-- Favorites  -->
+    <div class="col l4 m8 s12">
+        <ul class="collection with-header">
+            <li class="collection-header"><h4>Favorites</h4></li>
+            <tbody>
+            <li class="collection-item"><div id="favorites"></div></li>
+
+          </tbody>
+          
+        
+          </ul>
+            </div> 
+  </div>
+</div>
+
+
+<div id="modalCards">
+  </div>
+
+  <!-- <div id="modal0" class="modal bottom-sheet modal-fixed-footer">
+      <div class="modal-content">
+        <p>A bunch of text22</p>
       </div>
-    </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+
+      </div>
+    </div> -->
+
 
 
 
@@ -105,6 +130,7 @@
     <!-- script for dropdown buttons -->
     <script>
     $(document).ready(function(){
+        $('.modal').modal();
         $('.sidenav').sidenav();
         $(".dropdown-trigger").dropdown();
         $('.collapsible').collapsible();
