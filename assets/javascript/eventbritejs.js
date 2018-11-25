@@ -1,6 +1,7 @@
 // Eventbrite API key TIAV75OSYBH2MPVU3O2B
 // use token=TIAV75OSYBH2MPVU3O2B
 
+
 function buildEventSearchURL(coords) {
   // https://www.eventbriteapi.com/v3/events/search/?location.within=1km&
   // location.latitude=40.7648&location.longitude=-73.9808&start_date.range_start=2018-11-20T00%3A00%3A00&
@@ -16,7 +17,7 @@ function buildEventSearchURL(coords) {
 
   var end = $(".datepicker-end").datepicker().val();
   var endDate = end + "T00%3A00%3A00";
-  
+
  // var startDate = "2018-11-28T00%3A00%3A00";
   const token = "TIAV75OSYBH2MPVU3O2B";
 
