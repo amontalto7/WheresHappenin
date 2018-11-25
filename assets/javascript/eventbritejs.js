@@ -10,7 +10,14 @@ function buildEventSearchURL(coords) {
   // var startdate = moment().add(1, 'week');
   // startdate.format(dateformat);
   // startdate = startdate + "T00%3A00%3A00";
-  var startDate = "2018-11-28T00%3A00%3A00";
+
+  var start = $(".datepicker-start").datepicker().val();
+  var startDate = start + "T00%3A00%3A00";
+
+  var end = $(".datepicker-end").datepicker().val();
+  var endDate = end + "T00%3A00%3A00";
+  
+ // var startDate = "2018-11-28T00%3A00%3A00";
   const token = "TIAV75OSYBH2MPVU3O2B";
 
   // var queryParams = {
@@ -32,6 +39,8 @@ function buildEventSearchURL(coords) {
     coords[1] +
     "&start_date.range_start=" +
     startDate +
+    "&start_date.range_end=" +
+    endDate +
     "&token=" +
     token;
 
