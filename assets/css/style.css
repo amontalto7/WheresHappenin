@@ -26,7 +26,7 @@ body.disableOutline *:focus{
 /* Styles for Leaflet API */
 /* ----------------------------------------------------------- */
 #mapid { 
-    margin-top: 5px;
+    /* margin-top: 5px; */
     height: 300px;
 }
 

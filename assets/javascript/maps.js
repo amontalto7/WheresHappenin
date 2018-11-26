@@ -6,7 +6,7 @@
 
 // initialize map
 var mymap
- = L.map("mapid").setView([51.505, -0.09], 13);
+ = L.map("mapid").setView([51.505, -0.09], 14);
 
 // lisener to check if user location is available
  function onLocationFound(e) {
@@ -130,7 +130,7 @@ function updateMap(geoData) {
   console.log(geoData);
   var coordinates = convertAddress(geoData);
 
-  mymap.setView(coordinates, 15);
+  mymap.setView(coordinates, 16);
 
   // clear previous markers
   markerGroup.clearLayers();
