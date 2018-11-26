@@ -65,11 +65,25 @@ $(document).ready(function() {
   $(".loginLink").on("click", login);
   $(".signoutLink").on("click", signOut);
 
-  database.ref("/Favorites")
+
+  var userID = getCurrentUser()
+  database.ref("/Favorites/"+userID)
     // .orderByChild("trainName")
     .on("value", function(snapshot) {
       var fvs = snapshot.val();
       console.log(fvs);
+
+      if (snapshot.child("Event").exists()) {
+        // TODO - AJAX CALL - get event by ID
+        var eventID = snapshot.val().id;
+        alert(eventID);
+
+      }
+      if (snapshot.child("Restaurant").exists()) {
+        // TODO - AJAX CALL - get restaurent by ID
+
+      }
+
     });
 
 
