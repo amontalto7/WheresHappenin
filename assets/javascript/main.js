@@ -97,13 +97,37 @@ $(document).ready(function() {
     },
     complete: function() { //alert('Closed');
     } // Callback for Modal close
+    }
+  );
+
+  function addFavoriteToFB(e){
+
+    var UID = getCurrentUser();
+    var itemType = $(e).attr("data-type");
+    var itemID = $(e).attr("data-id"); 
+    database.ref("/Favorites/"+UID+"/"+itemType).push({
+          id  : itemID
+    });
   }
-);
+
+  function removeFavorite(e){
+    var UID = getCurrentUser();
+    var itemType = $(e).attr("data-type");
+    // database.ref("/Favorites/"+UID+"/"+itemType).remove()
+  }
 
   // function to handle clicking on Favorite icon
   $(document).on("click", ".fav", function() {
+    var isFavorite = $(this).hasClass("favorited");
+    if (isFavorite) {
+      removeFavorite(this);
+    } else {
+      addFavoriteToFB(this);
+    }
+
     $(this).toggleClass("favorited");
   });
 });
 
 // Google Geolocation / geocoding API Key: AIzaSyDfe8FcVBVkJX2yP6vNEyjLGyxsJ_oJMGI
+

@@ -1,16 +1,25 @@
 // Eventbrite API key TIAV75OSYBH2MPVU3O2B
 // use token=TIAV75OSYBH2MPVU3O2B
 
+var globalEventID = "";
+
 function buildEventSearchURL(coords) {
   // https://www.eventbriteapi.com/v3/events/search/?location.within=1km&
   // location.latitude=40.7648&location.longitude=-73.9808&start_date.range_start=2018-11-20T00%3A00%3A00&
   // token=TIAV75OSYBH2MPVU3O2B
   var queryURL = "https://www.eventbriteapi.com/v3/events/search/?";
-  var dateformat = "YYYY-MM-DD";
+  // var dateformat = "YYYY-MM-DD";
   // var startdate = moment().add(1, 'week');
   // startdate.format(dateformat);
   // startdate = startdate + "T00%3A00%3A00";
-  var startDate = "2018-11-28T00%3A00%3A00";
+
+  var start = $(".datepicker-start").datepicker().val();
+  var startDate = start + "T00%3A00%3A00";
+
+  var end = $(".datepicker-end").datepicker().val();
+  var endDate = end + "T00%3A00%3A00";
+
+ // var startDate = "2018-11-28T00%3A00%3A00";
   const token = "TIAV75OSYBH2MPVU3O2B";
 
   // var queryParams = {
@@ -32,6 +41,8 @@ function buildEventSearchURL(coords) {
     coords[1] +
     "&start_date.range_start=" +
     startDate +
+    "&start_date.range_end=" +
+    endDate +
     "&token=" +
     token;
 
@@ -55,7 +66,7 @@ function displayEvent(coords) {
 
     var results = response.events;
     console.log("events:");
-   console.log(results);
+    console.log(results);
 
     $("#eventbrite").empty();
     var locations = [];
@@ -76,6 +87,8 @@ function displayEvent(coords) {
 
       var name = results[i].name.text;
       var vID = results[i].venue_id;
+      var eventID = results[i].id;
+      globalEventID = eventID;
       var venueInfo = {
         venueID : vID,
         eventName : name
@@ -130,6 +143,8 @@ function displayEvent(coords) {
 
                     var favIconLink = $("<a>");
                     favIconLink.attr("href","#!");
+                    favIconLink.attr("data-id",eventID);
+                    favIconLink.attr("data-type","Event")
                     favIconLink.addClass("secondary-content waves-effect waves-light btn-small-flat fav");
         
                       var favIcon = $("<i>");
@@ -154,16 +169,14 @@ function displayEvent(coords) {
     
               $("#modalCards").append(emodalCard);
     
-
-
-
+       
 
 // Get the cost
 // for reference event with cost: https://www.eventbriteapi.com/v3/events/49212779749/ticket_classes/?token=TIAV75OSYBH2MPVU3O2B 
 
 // -----------------
 // EVENT ID IS HERE:
-  var eventID = results[i].id;
+//  var eventID = results[i].id;
 // -----------------
 
   //    $.ajax({
@@ -202,7 +215,7 @@ function displayEvent(coords) {
         method: "GET",
         dataType: "json"
       }).then(function(response) {
-       console.log(response);
+      //  console.log(response);
 
         var latitude = response.latitude;
         var longitude = response.longitude;
@@ -230,3 +243,21 @@ function displayEvent(coords) {
 }
 
 // displayEvent();
+
+// Get events by ID 
+function getEventByID() {
+
+  $.ajax({
+    url: "https://www.eventbriteapi.com/v3/events/34681766096/?token=TIAV75OSYBH2MPVU3O2B",
+    method: "GET",
+    dataType: "json"
+  }).then(function(response) {
+    // console.log(response);
+    var nameEvent = response.name.text;
+    // console.log(nameEvent)
+
+  })  
+}
+getEventByID();    
+
+

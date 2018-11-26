@@ -11,14 +11,22 @@ body.disableOutline *:focus{
     outline: none !important;
 }
 
-
+/* ----------------------------------------------------------- */
+/* Padding for the Date field */
+/* ----------------------------------------------------------- */
+#daterange {
+    padding-top: 10px;
+}
+/* ----------------------------------------------------------- */
+/* End of style for Date field */
+/* ----------------------------------------------------------- */
 
 
 /* ----------------------------------------------------------- */
 /* Styles for Leaflet API */
 /* ----------------------------------------------------------- */
 #mapid { 
-    margin-top: 5px;
+    /* margin-top: 5px; */
     height: 300px;
 }
 
@@ -52,12 +60,6 @@ body.disableOutline *:focus{
 .restAddress, .restCuisine, .restCost, .eventStart {
     font-size: .8em;
     font-family: Arial, Helvetica, sans-serif;
-}
-
-tbody {
-    display:block;
-    height:120px;
-    overflow:auto;
 }
 
 .modalName {
