@@ -186,6 +186,27 @@ function displayRestaurants(coords) {
           addRMarker(element,restaurantGroup);
          });
      });
-
-         
    }
+
+
+
+   // Get restaurant by ID
+function getRestaurantByID() {
+
+    $.ajax({
+      url: "https://developers.zomato.com/api/v2.1/restaurant?res_id=16771079",
+      method: "GET",
+      dataType: "json",
+      headers: {
+        "user-key": "495fd465b1df3b6ee70c8cd31b998836"
+        }
+      }).then(function(response) {
+      //  console.log(response);
+        var nameRestaurant = response.name;
+      // console.log(nameRestaurant)
+  
+      })  
+}
+
+getRestaurantByID();   
+  
