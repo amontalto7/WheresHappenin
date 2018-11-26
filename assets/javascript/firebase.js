@@ -34,9 +34,9 @@ function getCurrentUser(){
     })
   } else {
     // sign in as an anonymous user
-    firebaseAuth.signInAnonymously();
+    // firebaseAuth.signInAnonymously();
     // firebaseAuth.signInAnonymously().addOnCompleteListener(){   
-      getCurrentUser();
+      // getCurrentUser();
     // }
     return "0000";  // if no user is signed in and the recursive function failed, we return 0000;
   }
