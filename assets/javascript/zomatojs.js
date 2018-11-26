@@ -5,7 +5,7 @@ function buildZomatoURL(coords) {
   // base queryURL
   var queryURL = "https://developers.zomato.com/api/v2.1/search?";
   // Begin building an object to contain our API call's query parameters
-  var queryParams = { count: 20 };
+  var queryParams = { count: 10 };
 
   // Grab the datavalue from the button clicked
   // queryParams.entity_id = 280;
@@ -75,14 +75,17 @@ function displayRestaurants(coords) {
 
                 // zomatolistdiv.append(favIconLink);
 
-                var restAddress = $("<p>");
-                restAddress.addClass("restAddress");
-                restAddress.html(results[i].restaurant.location.address); 
+                // var restAddress = $("<p>");
+                // restAddress.addClass("restAddress");
+                // restAddress.html(results[i].restaurant.location.address); 
 
+                var restCost = $("<p>");
+                restCost.addClass("restCost");
+                restCost.html("Cost for two: $" +results[i].restaurant.average_cost_for_two);
 
 
               // append restaurant info to LI tags
-              modalTriggerLI.append(displayRestName, zomatolistdiv, restAddress);
+              modalTriggerLI.append(displayRestName, zomatolistdiv, restCost);
 
             // append LI tag to UL collection
             modalTriggerUL.append(modalTriggerLI);
@@ -140,13 +143,13 @@ function displayRestaurants(coords) {
                 costIcon.addClass("material-icons");
                 costIcon.text("attach_money");
 
-                var restCost = $("<p>");
-                restCost.addClass("restCost");
-                restCost.html("Cost for two: " +results[i].restaurant.average_cost_for_two);
-                restCost.prepend(costIcon);
+                var mRestCost = $("<p>");
+                mRestCost.addClass("mRestCost");
+                mRestCost.html("Cost for two: $" +results[i].restaurant.average_cost_for_two);
+                mRestCost.prepend(costIcon);
 
 
-              modalContent.append(modalRestName,favIconLink,$("<hr>"),restAddress,restCuisine,restCost);
+              modalContent.append(modalRestName,favIconLink,$("<hr>"),restAddress,restCuisine,mRestCost);
 
               // var modalFooter = $("<div>");
               // modalFooter.addClass("modal-footer");
@@ -186,27 +189,6 @@ function displayRestaurants(coords) {
           addRMarker(element,restaurantGroup);
          });
      });
+
+         
    }
-
-
-
-   // Get restaurant by ID
-function getRestaurantByID() {
-
-    $.ajax({
-      url: "https://developers.zomato.com/api/v2.1/restaurant?res_id=16771079",
-      method: "GET",
-      dataType: "json",
-      headers: {
-        "user-key": "495fd465b1df3b6ee70c8cd31b998836"
-        }
-      }).then(function(response) {
-      //  console.log(response);
-        var nameRestaurant = response.name;
-      // console.log(nameRestaurant)
-  
-      })  
-}
-
-getRestaurantByID();   
-  
