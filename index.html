@@ -15,6 +15,10 @@
       <link rel="stylesheet" type="text/css" href="assets\css\style.css">
       <!-- <link rel="stylesheet" type="text/css" href="assets\css\zomatocss.css"> -->
     
+      <!-- Materialize CSS-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
     <title>Where's Happenin'!</title>
   </head>
   
@@ -55,12 +59,12 @@
       <div class="container" id="daterange">
           <div class="row">
             <div class="col s6 input-field">
-                <input type="date" id="start" class="datepicker-start" style="color: grey;" required>
+                <input type="text" id="start" class="datepicker-start" style="color: grey;" required>
                 <label for="start"><i class="tiny material-icons left">date_range</i>Start Date</label>
             </div>
         
             <div class="col s6 input-field">
-                <input type="date" id="end" class="datepicker-end" style="color: grey;" required>
+                <input type="text" id="end" class="datepicker-end" style="color: grey;" required>
                 <label for="end"><i class="tiny material-icons left">date_range</i>End Date</label>
               </div>
         
@@ -135,6 +139,11 @@
 
 
 
+    <!-- Materialise javascript-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
 
     <!-- JavaScript / jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -154,7 +163,7 @@
         $('.sidenav').sidenav();
         $(".dropdown-trigger").dropdown();
         $('.collapsible').collapsible();
- //       $('.datepicker').datepicker();
+        $('.datepicker').datepicker();
         
 
       });
@@ -163,7 +172,9 @@
     <script type="text/javascript" src="assets/javascript/zomatojs.js"></script>
 
       <!-- Temporarily adding eventbritejs.js-->
-      <script type="text/javascript" src="assets/javascript/eventbritejs.js"></script> 
+      <script type="text/javascript" src="assets/javascript/eventbritejs.js"></script>
+
+      <script type="text/javascript" src="assets/javascript/calendar.js"></script>
 
 
     <script type="text/javascript" src="assets/javascript/maps.js"></script>
