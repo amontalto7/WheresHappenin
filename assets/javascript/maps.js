@@ -6,7 +6,7 @@
 
 // initialize map
 var mymap
- = L.map("mapid").setView([51.505, -0.09], 13);
+ = L.map("mapid").setView([51.505, -0.09], 14);
 
 // lisener to check if user location is available
  function onLocationFound(e) {
@@ -53,11 +53,12 @@ L.tileLayer(
 var markerGroup = L.layerGroup().addTo(mymap);
 var restaurantGroup = L.layerGroup().addTo(mymap);
 
+const imgShadow = "https://unpkg.com/leaflet@1.3.4/dist/images/marker-shadow.png";
 // create icons for restaurants (rIcon) and events (eIcon), which inherit properties from L.Icon
 var customIcon = L.Icon.extend({
   options: {
     iconSize: [40, 42], // size of the icon
-    shadowUrl: "https://unpkg.com/leaflet@1.3.4/dist/images/marker-shadow.png",
+    shadowUrl: imgShadow,
     shadowAnchor: [12, 22] // where to anchor shadow image
   }
 });
@@ -129,7 +130,7 @@ function updateMap(geoData) {
   console.log(geoData);
   var coordinates = convertAddress(geoData);
 
-  mymap.setView(coordinates, 15);
+  mymap.setView(coordinates, 16);
 
   // clear previous markers
   markerGroup.clearLayers();

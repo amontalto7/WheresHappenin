@@ -21,6 +21,30 @@ function login() {
 
 }
 
+function getCurrentUser(){
+  var user = firebase.auth().currentUser;
+  console.log(user);
+  if (user != null) {
+    user.providerData.forEach(function (profile) {
+      console.log("Sign-in provider: " + profile.providerId);
+      console.log("  Provider-specific UID: " + profile.uid);
+      console.log("  Name: " + profile.displayName);
+      console.log("  Email: " + profile.email);
+      console.log("  Photo URL: " + profile.photoURL);
+    })
+  } else {
+    // sign in as an anonymous user
+    // firebaseAuth.signInAnonymously();
+    // firebaseAuth.signInAnonymously().addOnCompleteListener(){   
+      // getCurrentUser();
+    // }
+    return "0000";  // if no user is signed in and the recursive function failed, we return 0000;
+  }
+  return(user.uid);
+  // return(user.providerData.uid);
+}
+
+
 function signOut() {
   firebase
     .auth()
@@ -40,6 +64,16 @@ function signOut() {
 $(document).ready(function() {
   $(".loginLink").on("click", login);
   $(".signoutLink").on("click", signOut);
+
+  database.ref("/Favorites")
+    // .orderByChild("trainName")
+    .on("value", function(snapshot) {
+      var fvs = snapshot.val();
+      console.log(fvs);
+    });
+
+
+
 });
 
 
@@ -71,5 +105,7 @@ function checkLoginStatus() {
 
   firebase.auth().onAuthStateChanged(newLoginHappened);
 }
+
+
 
 window.onload = checkLoginStatus;
