@@ -40,8 +40,8 @@ function getCurrentUser(){
     // }
     return "0000";  // if no user is signed in and the recursive function failed, we return 0000;
   }
-  // return(user.uid);
-  return(user.providerData.uid);
+  return(user.uid);
+  // return(user.providerData.uid);
 }
 
 
