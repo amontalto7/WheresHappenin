@@ -23,7 +23,7 @@ function login() {
 
 function getCurrentUser(){
   var user = firebase.auth().currentUser;
-
+  console.log(user);
   if (user != null) {
     user.providerData.forEach(function (profile) {
       console.log("Sign-in provider: " + profile.providerId);
@@ -31,13 +31,18 @@ function getCurrentUser(){
       console.log("  Name: " + profile.displayName);
       console.log("  Email: " + profile.email);
       console.log("  Photo URL: " + profile.photoURL);
-      return(profile.uid);
-    });
+    })
   } else {
-    return "0000";
+    // sign in as an anonymous user
+    firebaseAuth.signInAnonymously();
+    // firebaseAuth.signInAnonymously().addOnCompleteListener(){   
+      getCurrentUser();
+    // }
+    return "0000";  // if no user is signed in and the recursive function failed, we return 0000;
   }
+  // return(user.uid);
+  return(user.providerData.uid);
 }
-
 
 
 function signOut() {
