@@ -81,7 +81,12 @@ tbody {
 /* Endfor Zomato API & Eventbrite API*/
 /* ----------------------------------------------------------- */
 
-h2 {
+
+/* ----------------------------------------------------------- */
+/* Styles for about and contacts */
+/* ----------------------------------------------------------- */
+
+#titles {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
