@@ -64,6 +64,16 @@ function signOut() {
 $(document).ready(function() {
   $(".loginLink").on("click", login);
   $(".signoutLink").on("click", signOut);
+
+  database.ref("/Favorites")
+    // .orderByChild("trainName")
+    .on("value", function(snapshot) {
+      var fvs = snapshot.val();
+      console.log(fvs);
+    });
+
+
+
 });
 
 
