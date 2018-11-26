@@ -82,3 +82,20 @@ body.disableOutline *:focus{
 /* ----------------------------------------------------------- */
 /* Endfor Zomato API & Eventbrite API*/
 /* ----------------------------------------------------------- */
+
+
+/* ----------------------------------------------------------- */
+/* Styles for about and contacts */
+/* ----------------------------------------------------------- */
+
+#titles {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#about {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* font-size: 1.2em; */
+}
+
