@@ -61,36 +61,6 @@ function signOut() {
     });
 }
 
-$(document).ready(function() {
-  $(".loginLink").on("click", login);
-  $(".signoutLink").on("click", signOut);
-
-
-  var userID = getCurrentUser()
-  database.ref("/Favorites/"+userID)
-    // .orderByChild("trainName")
-    .on("value", function(snapshot) {
-      var fvs = snapshot.val();
-      console.log(fvs);
-
-      if (snapshot.child("Event").exists()) {
-        // TODO - AJAX CALL - get event by ID
-        var eventID = snapshot.val().id;
-        alert(eventID);
-
-      }
-      if (snapshot.child("Restaurant").exists()) {
-        // TODO - AJAX CALL - get restaurent by ID
-
-      }
-
-    });
-
-
-
-});
-
-
 function app(user) {
   // console.log(user);
 
@@ -119,6 +89,56 @@ function checkLoginStatus() {
 
   firebase.auth().onAuthStateChanged(newLoginHappened);
 }
+
+
+function addFavoriteToFB(e){
+
+  var UID = getCurrentUser();
+  var itemType = $(e).attr("data-type");
+  var itemID = $(e).attr("data-id"); 
+  database.ref("/Favorites/"+UID).push({
+        id  : itemID,
+        type: itemType
+  });
+}
+
+function removeFavorite(e){
+  var UID = getCurrentUser();
+  var itemType = $(e).attr("data-type");
+  // database.ref("/Favorites/"+UID+"/"+itemType).remove()
+}
+
+
+$(document).ready(function() {
+  $(".loginLink").on("click", login);
+  $(".signoutLink").on("click", signOut);
+
+
+  var userID = getCurrentUser()
+  database.ref("/Favorites/"+userID)
+    // .orderByChild("trainName")
+    .on("value", function(snapshot) {
+      var fvs = snapshot.val();
+      console.log(fvs);
+
+      if (snapshot.child("Event").exists()) {
+        // TODO - AJAX CALL - get event by ID
+        var eventID = snapshot.val().id;
+        // alert(eventID);
+
+      }
+      if (snapshot.child("Restaurant").exists()) {
+        // TODO - AJAX CALL - get restaurent by ID
+
+      }
+
+    });
+
+
+
+});
+
+
 
 
 

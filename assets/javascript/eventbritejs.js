@@ -139,7 +139,16 @@ function displayEvent(coords) {
                     modalEventName.addClass("eventName modalName");
                     modalEventName.attr("href", results[i].url);
                     modalEventName.attr("target", "_blank");
-                    modalEventName.text(name);                
+                    modalEventName.text(name);              
+                    
+                    var dateIcon = $("<i>");
+                    dateIcon.addClass("material-icons");
+                    dateIcon.text("date_range");
+
+                    var m_eventStartTime = $("<p>");
+                    m_eventStartTime.addClass("eventStart");
+                    m_eventStartTime.text("Time: " + startTime);
+                    m_eventStartTime.prepend(dateIcon);
 
                     var favIconLink = $("<a>");
                     favIconLink.attr("href","#!");
@@ -154,7 +163,7 @@ function displayEvent(coords) {
                     favIconLink.append(favIcon);
         
     
-                  modalContent.append(modalEventName, favIconLink, $("<hr>"));
+                  modalContent.append(modalEventName, favIconLink, $("<hr>"),m_eventStartTime);
     
                   // var modalFooter = $("<div>");
                   // modalFooter.addClass("modal-footer");
