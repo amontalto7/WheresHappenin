@@ -8,13 +8,13 @@ function buildZomatoURL(coords) {
   var queryParams = { count: 10 };
 
   // Grab the datavalue from the button clicked
-  // queryParams.entity_id = 280;
+  queryParams.entity_id = 280;
   queryParams.entity_type = "zone";
   queryParams.lat = coords[0];
   queryParams.lon = coords[1];
   queryParams.radius = 1000;
-  // queryParams.sort="real_distance";
-  // queryParams.collection_id = 1;
+  queryParams.sort="real_distance";
+  queryParams.collection_id = 1;
   queryParams.sort = "rating";
   queryParams.order = "asc;";
 
