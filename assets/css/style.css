@@ -49,7 +49,7 @@ body.disableOutline *:focus{
 #eventName, #resname {
     /* font-size: 1.5em; */
     color: #D81B60;
-    font-family: 'Karla', sans-serif;
+    font-family: 'Courgette', cursive;
 }
 
 #eventName {
@@ -58,8 +58,8 @@ body.disableOutline *:focus{
 }
 
 .restAddress, .restCuisine, .restCost, .eventStart {
-    font-size: .8em;
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-size: .8em; */
+    font-family: 'Open Sans', sans-serif;
 }
 
 .modalName {
@@ -74,9 +74,33 @@ body.disableOutline *:focus{
     cursor: cell;
 }
 
+.resname, .eventName {
+    color: #D81B60;
+
 .favorited {
     color: gold;
 }
+
+#listlen {
+    display:block;
+        min-height:50px;
+        max-height: 400px;
+        overflow: auto;
+
+    background-color:#ad1457;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.3em;
+        
+}
+
+.collection-header {
+    font-family: 'Courgette', cursive;
+    text-align: center;
+    text-underline-position: below;
+    background-color: #D81B60;
+    color: white;
+}
+
 
 
 /* ----------------------------------------------------------- */
@@ -95,7 +119,7 @@ body.disableOutline *:focus{
 }
 
 #about {
-    font-family: 'Open Sans', Courgette;
+    font-family: 'Open Sans', sans-serif;
     font-style: italic;
     /* font-size: 1.2em; */
 }
