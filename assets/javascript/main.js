@@ -100,21 +100,6 @@ $(document).ready(function() {
     }
   );
 
-  function addFavoriteToFB(e){
-
-    var UID = getCurrentUser();
-    var itemType = $(e).attr("data-type");
-    var itemID = $(e).attr("data-id"); 
-    database.ref("/Favorites/"+UID+"/"+itemType).push({
-          id  : itemID
-    });
-  }
-
-  function removeFavorite(e){
-    var UID = getCurrentUser();
-    var itemType = $(e).attr("data-type");
-    // database.ref("/Favorites/"+UID+"/"+itemType).remove()
-  }
 
   // function to handle clicking on Favorite icon
   $(document).on("click", ".fav", function() {
