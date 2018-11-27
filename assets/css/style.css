@@ -76,6 +76,7 @@ body.disableOutline *:focus{
 
 .resname, .eventName {
     color: #D81B60;
+}
 
 .favorited {
     color: gold;
