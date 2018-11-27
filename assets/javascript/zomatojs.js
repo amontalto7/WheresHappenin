@@ -112,7 +112,7 @@ function displayRestaurants(coords) {
                 favIconLink.attr("href","#!");
                 favIconLink.attr("data-id",restID);
                 favIconLink.attr("data-type","Restaurant")
-                favIconLink.addClass("secondary-content waves-effect waves-light btn-small-flat fav");
+                favIconLink.addClass("right fav");
 
                   var favIcon = $("<i>");
                   favIcon.addClass("material-icons");

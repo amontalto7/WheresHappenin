@@ -154,7 +154,7 @@ function displayEvent(coords) {
                     favIconLink.attr("href","#!");
                     favIconLink.attr("data-id",eventID);
                     favIconLink.attr("data-type","Event")
-                    favIconLink.addClass("secondary-content waves-effect waves-light btn-small-flat fav");
+                    favIconLink.addClass("right fav");
         
                       var favIcon = $("<i>");
                       favIcon.addClass("material-icons");
