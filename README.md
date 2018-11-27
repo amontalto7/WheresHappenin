@@ -1,7 +1,7 @@
 # Where's Happenin'
-### Columbia Engineering Full Stack Bootcamp - GIPHY project - Homework # 6
+### Columbia Engineering Full Stack Bootcamp - Group project # 1
 
-This is a web app written with **AJAX**, **jQuery**, **Javascript**, **HTML** and **CSS**.
+This is a web app written with **Materialize CSS Framework**, **AJAX**, **Leaflet Maps**, **moment.js**, **jQuery**, **Javascript**, **HTML** and **CSS**.
 
 On load, it will attempt to use your current location to pull restaurants and events in your area.
 Alternatively, you can search for a loction (either zip, city, exact address, etc), use date picker to select date range, which will pull restaurants from zomato and events from eventbrite.
