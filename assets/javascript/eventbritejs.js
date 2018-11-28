@@ -2,6 +2,7 @@
 // use token=TIAV75OSYBH2MPVU3O2B
 
 var globalEventID = "";
+const token = "TIAV75OSYBH2MPVU3O2B";
 
 function buildEventSearchURL(coords) {
   // https://www.eventbriteapi.com/v3/events/search/?location.within=1km&
@@ -20,7 +21,6 @@ function buildEventSearchURL(coords) {
   var endDate = end + "T00%3A00%3A00";
 
  // var startDate = "2018-11-28T00%3A00%3A00";
-  const token = "TIAV75OSYBH2MPVU3O2B";
 
   // var queryParams = {
   //   location : {
@@ -248,19 +248,28 @@ function displayEvent(coords) {
 // displayEvent();
 
 // Get events by ID 
-function getEventByID() {
+function getEventByID(eventID) {
 
   $.ajax({
-    url: "https://www.eventbriteapi.com/v3/events/34681766096/?token=TIAV75OSYBH2MPVU3O2B",
+    url: "https://www.eventbriteapi.com/v3/events/"+eventID+"/?token="+token,
     method: "GET",
     dataType: "json"
   }).then(function(response) {
-    // console.log(response);
-    var nameEvent = response.name.text;
-    // console.log(nameEvent)
+    console.log(response);
+    var eventName = response.name.text;
+    var eventURL = response.url;
+
+    var favInfo = $("<a>");
+    favInfo.text(eventName);
+    favInfo.attr("href",eventURL);
+    favInfo.attr("target","_blank");
+    
+    $("#favorites").append("<i class='material-icons'>event</i>");
+    $("#favorites").append(favInfo);
+    $("#favorites").append("<hr>");
 
   })  
 }
-getEventByID();    
+ 
 
 

@@ -116,21 +116,26 @@ $(document).ready(function() {
 
   var userID = getCurrentUser()
   database.ref("/Favorites/"+userID)
-    // .orderByChild("trainName")
-    .on("value", function(snapshot) {
+    .on("child_added", function(snapshot) {
       var fvs = snapshot.val();
       console.log(fvs);
 
-      if (snapshot.child("Event").exists()) {
-        // TODO - AJAX CALL - get event by ID
-        var eventID = snapshot.val().id;
-        // alert(eventID);
+      var favID = fvs.id;
+      var favType = fvs.type;
 
+      if (favType === "Restaurant") {
+        // ajax call for get restaurant by ID
       }
-      if (snapshot.child("Restaurant").exists()) {
-        // TODO - AJAX CALL - get restaurent by ID
 
+      if (favType === "Event") {
+        getEventByID(favID);   
       }
+
+
+      // $("#favorites").append(favType);
+      
+      
+
 
     });
 
