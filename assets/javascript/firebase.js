@@ -123,8 +123,7 @@ function populateFavorites() {
       var favType = fvs.type;
       if (favType === "Restaurant") {
         getRestaurantByID(favID);
-      }
-      if (favType === "Event") {
+      } else if (favType === "Event") {
         getEventByID(favID);
       }
     });
