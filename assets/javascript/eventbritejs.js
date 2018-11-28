@@ -15,10 +15,22 @@ function buildEventSearchURL(coords) {
   // startdate = startdate + "T00%3A00%3A00";
 
   var start = $(".datepicker-start").datepicker().val();
+      startMoment = moment(start,"mmm dd, yyyy");
+      start = startMoment.format("YYYY-MM-DD");  
+      
   var startDate = start + "T00%3A00%3A00";
+  console.log("START DATE")
+  console.log(startDate);
+  console.log("2018-11-28T00%3A00%3A00");
 
   var end = $(".datepicker-end").datepicker().val();
+      endMoment = moment(end,"mmm dd, yyyy");
+      end = endMoment.format("YYYY-MM-DD");
+      console.log(end);
   var endDate = end + "T00%3A00%3A00";
+  console.log("END DATE");
+  console.log(endDate);
+  console.log("2018-12-05T00%3A00%3A00");
 
  // var startDate = "2018-11-28T00%3A00%3A00";
 

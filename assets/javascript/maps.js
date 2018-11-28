@@ -124,7 +124,6 @@ function addEMarker(place, layer) {
 function displayAll(coordinates){
   displayRestaurants(coordinates);
   displayEvent(coordinates);
-  $("#favorites").empty();
 }
 
 function updateMap(geoData) {
