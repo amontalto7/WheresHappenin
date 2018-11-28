@@ -44,7 +44,7 @@ function displayRestaurants(coords) {
          console.log
          var results = response.restaurants;
          console.log(results);
-         $("#zomato").empty();
+         $("#zomatofile").empty();
          var locations = [];
          for (var i = 0; i < results.length; i++) {
           //  console.log(results[i].restaurant.name)
@@ -192,3 +192,31 @@ function displayRestaurants(coords) {
 
          
    }
+
+function getRestaurantByID(restID) {
+
+  $.ajax({
+    url: "https://developers.zomato.com/api/v2.1/restaurant?res_id=" + restID,
+    method: "GET",
+    dataType: "json",
+    headers: {
+    "user-key": "495fd465b1df3b6ee70c8cd31b998836"
+    }
+  }).then(function(response) {
+    console.log(response);
+    var favRestName = response.name;
+    var favRestURL = response.url;
+
+    var favInfo = $("<a>");
+    favInfo.text(favRestName);
+    favInfo.attr("href",favRestURL);
+    favInfo.attr("target","_blank");
+    
+    $("#favorites").append("<i class='material-icons'>restaurant</i>");
+    $("#favorites").append(favInfo);
+    $("#favorites").append("<hr>");
+
+  })  
+
+
+}
