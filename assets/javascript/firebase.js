@@ -18,7 +18,8 @@ function login() {
   provider.addScope("email");
 
   firebase.auth().signInWithRedirect(provider);
-
+  $("#favorites").empty();
+  populateFavorites();
 }
 
 function getCurrentUser(){
@@ -111,37 +112,32 @@ function removeFavorite(e){
   // database.ref("/Favorites/"+UID).child(itemType).removeValue();
 }
 
+function populateFavorites() {
+  var userID = getCurrentUser();
+  database.ref("/Favorites/" + userID)
+    .on("child_added", function (snapshot) {
+      var fvs = snapshot.val();
+      console.log(fvs);
+      var favID = fvs.id;
+      var favType = fvs.type;
+      if (favType === "Restaurant") {
+        getRestaurantByID(favID);
+      }
+      if (favType === "Event") {
+        getEventByID(favID);
+      }
+    });
+}
+
 
 $(document).ready(function() {
   $(".loginLink").on("click", login);
   $(".signoutLink").on("click", signOut);
-
-
-  var userID = getCurrentUser()
-  database.ref("/Favorites/"+userID)
-    .on("child_added", function(snapshot) {
-      var fvs = snapshot.val();
-      console.log(fvs);
-
-      var favID = fvs.id;
-      var favType = fvs.type;
-
-      if (favType === "Restaurant") {
-        getRestaurantByID(favID);
-      }
-
-      if (favType === "Event") {
-        getEventByID(favID);   
-      }
-
-    });
+  populateFavorites();
 
 
 
 });
 
-
-
-
-
 window.onload = checkLoginStatus;
+
