@@ -105,7 +105,10 @@ function addFavoriteToFB(e){
 function removeFavorite(e){
   var UID = getCurrentUser();
   var itemType = $(e).attr("data-type");
-  // database.ref("/Favorites/"+UID+"/"+itemType).remove()
+  var itemID = $(e).attr("data-id"); 
+//BELOW CODE NOT WORKING
+  // database.ref("/Favorites/"+UID).child(itemID).removeValue();
+  // database.ref("/Favorites/"+UID).child(itemType).removeValue();
 }
 
 
@@ -116,20 +119,19 @@ $(document).ready(function() {
 
   var userID = getCurrentUser()
   database.ref("/Favorites/"+userID)
-    // .orderByChild("trainName")
-    .on("value", function(snapshot) {
+    .on("child_added", function(snapshot) {
       var fvs = snapshot.val();
       console.log(fvs);
 
-      if (snapshot.child("Event").exists()) {
-        // TODO - AJAX CALL - get event by ID
-        var eventID = snapshot.val().id;
-        // alert(eventID);
+      var favID = fvs.id;
+      var favType = fvs.type;
 
+      if (favType === "Restaurant") {
+        getRestaurantByID(favID);
       }
-      if (snapshot.child("Restaurant").exists()) {
-        // TODO - AJAX CALL - get restaurent by ID
 
+      if (favType === "Event") {
+        getEventByID(favID);   
       }
 
     });
