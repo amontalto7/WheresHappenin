@@ -18,8 +18,7 @@ function login() {
   provider.addScope("email");
 
   firebase.auth().signInWithRedirect(provider);
-  $("#favorites").empty();
-  populateFavorites();
+
 }
 
 function getCurrentUser(){
@@ -73,6 +72,8 @@ function app(user) {
   var welcomeText = $("<span>").text("Welcome ");
   welcomeText.append(splitName[0]+"!");
   $(".userWelcome").append(welcomeText)
+  $("#favorites").empty();
+  populateFavorites();
 }
 
 function checkLoginStatus() {
