@@ -88,6 +88,7 @@ function displayEvent(coords) {
       var name = results[i].name.text;
       var vID = results[i].venue_id;
       var eventID = results[i].id;
+      var eventURL = results[i].url;
       globalEventID = eventID;
       var venueInfo = {
         venueID : vID,
@@ -137,7 +138,7 @@ function displayEvent(coords) {
                     
                     var modalEventName = $("<a>");
                     modalEventName.addClass("eventName modalName");
-                    modalEventName.attr("href", results[i].url);
+                    modalEventName.attr("href", eventURL);
                     modalEventName.attr("target", "_blank");
                     modalEventName.text(name);              
                     
@@ -164,16 +165,6 @@ function displayEvent(coords) {
         
     
                   modalContent.append(modalEventName, favIconLink, $("<hr>"),m_eventStartTime);
-    
-                  // var modalFooter = $("<div>");
-                  // modalFooter.addClass("modal-footer");
-    
-                  //   var modalAgree = $("<a>");
-                  //   modalAgree.addClass("modal-action modal-close waves-effect waves-green btn-flat");
-                  //   modalAgree.attr("href", "#!");
-                  //   modalAgree.text("Agree");
-    
-                  // modalFooter.append(modalAgree);
                 emodalCard.append(modalContent)
     
               $("#modalCards").append(emodalCard);
@@ -244,6 +235,9 @@ function displayEvent(coords) {
         // add markers to map
 
         addEMarker(eventInfo, restaurantGroup);
+
+
+
       });
     });
   };
