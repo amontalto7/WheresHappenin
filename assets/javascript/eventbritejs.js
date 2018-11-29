@@ -13,12 +13,23 @@ function buildEventSearchURL(coords) {
   // var startdate = moment().add(1, 'week');
   // startdate.format(dateformat);
   // startdate = startdate + "T00%3A00%3A00";
+  var pickerFormat = "MMM DD, YYYY";
 
-  var start = $(".datepicker-start").datepicker().val();
+  var pickerStart = $(".datepicker-start").datepicker().val();
+      // startMoment = moment.utc(start,"mmm dd, yyyy").valueOf();
+      startMoment = moment(pickerStart).format(pickerFormat);
+      start = moment(startMoment).format("YYYY-MM-DD");  
+      
   var startDate = start + "T00%3A00%3A00";
 
-  var end = $(".datepicker-end").datepicker().val();
+  var pickerEnd = $(".datepicker-end").datepicker().val();
+      endMoment = moment(pickerEnd).format(pickerFormat);
+      end = moment(endMoment).format("YYYY-MM-DD");  
+      // console.log(end);
   var endDate = end + "T00%3A00%3A00";
+  console.log(endDate,"xxxxx");
+  // console.log("2018-12-05T00%3A00%3A00");
+  // console.log("END DATE");
 
  // var startDate = "2018-11-28T00%3A00%3A00";
 
