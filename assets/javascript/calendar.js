@@ -10,7 +10,7 @@ M.Datepicker.init(calendar1,{
     showClearBtn: true,
     autoClose: true,
     format: 'mmm dd, yyyy',
-    defaultDate: today,
+    defaultDate: tomorrow,
     setDefaultDate: true,
     minDate : today
 });
