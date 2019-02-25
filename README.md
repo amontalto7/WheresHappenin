@@ -1,5 +1,5 @@
 # Where's Happenin'
-### Columbia Engineering Full Stack Bootcamp - Group project # 1
+### Location based restaurant and event finder
 
 This is a web app written with **Materialize CSS Framework**, **AJAX**, **Leaflet Maps**, **moment.js**, **jQuery**, **Javascript**, **HTML** and **CSS**.
 
