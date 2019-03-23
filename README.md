@@ -12,7 +12,7 @@ Click on the name of a restaurant or event, and a modal shows displaying more in
 
 It should pull your favorites if you log in and populate the favorites section with your saved places. Fuctionality to remove favorites still needs to be added
 
-Deployed version: [https://amontalto7.github.io/WheresHappening/](https://amontalto7.github.io/WheresHappening/)
+Deployed version: [https://amontalto7.github.io/WheresHappenin/](https://amontalto7.github.io/WheresHappenin/)
 
 #### Contributers:
 *[ANDRIYANA YAKYMYSHYN](https://github.com/andriyanay)
